@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:imd0509_projeto/screens/available_doctors.dart';
+import 'package:imd0509_projeto/screens/login.dart';
+
+import 'utils/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'myHealth',
+      initialRoute: '/',
+      routes: {
+        AppRoutes.HOME: (ctx) => MyHomePage(title: 'gfds',),
+        AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
+        AppRoutes.LOGIN: (ctx) => Login()
+      },
       theme: ThemeData().copyWith(
               colorScheme: ThemeData()
                   .colorScheme
@@ -25,7 +35,6 @@ class MyApp extends StatelessWidget {
                 )
               )
             ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -40,6 +49,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static List<Widget> _widgetOptions = <Widget>[
+    AvailableDoctors(),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +75,27 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Aplicativo',
-            ),
-            Text(
-              'myHealth',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Pesquisar',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex)
+      ) // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

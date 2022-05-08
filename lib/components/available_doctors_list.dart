@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/utils/mock/doctorsList.dart';
 
 import '../models/doctor.dart';
+import '../utils/app_routes.dart';
 
 class AvailableDoctorsList extends StatefulWidget {
   @override
@@ -23,7 +24,11 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                 itemBuilder: (context, index) {
                   final doctor = doctorsList[index];
                   return InkWell(
-                    onTap: null,
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        AppRoutes.CREATE_SCHEDULE
+                      );
+                    },
                     child: Card(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

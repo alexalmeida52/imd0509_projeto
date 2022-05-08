@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/screens/available_doctors.dart';
+import 'package:imd0509_projeto/screens/create_schedule.dart';
 import 'package:imd0509_projeto/screens/login.dart';
 
 import 'utils/app_routes.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.HOME: (ctx) => MyHomePage(title: 'myHealth',),
         AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
+        AppRoutes.CREATE_SCHEDULE: (ctx) => CreateSchedule(),
         AppRoutes.LOGIN: (ctx) => Login()
       },
       theme: ThemeData().copyWith(

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'myHealth',
       initialRoute: '/',
       routes: {
-        AppRoutes.HOME: (ctx) => MyHomePage(title: 'gfds',),
+        AppRoutes.HOME: (ctx) => MyHomePage(title: 'myHealth',),
         AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
         AppRoutes.LOGIN: (ctx) => Login()
       },
@@ -76,18 +76,20 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromRGBO(65, 188, 89, 1),
+        fixedColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Pesquisar',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.receipt),
+            label: 'Consultas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.account_circle),
+            label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,

@@ -11,10 +11,23 @@ class AvailableDoctors extends StatefulWidget {
 class _AvailableDoctorsState extends State<AvailableDoctors> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AvailableDoctorsList()
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Médicos disponíveis', 
+            style: TextStyle(
+              color: Color.fromRGBO(28, 45, 62, 1),
+              fontSize: 26
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          AvailableDoctorsList()
+        ],
+      ),
     );
   }
 }

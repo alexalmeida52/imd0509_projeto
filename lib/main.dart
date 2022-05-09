@@ -75,7 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        toolbarHeight: 150,
+        title: Text('PESQUISAR', style: TextStyle(fontSize: 30),),
+        centerTitle: true,
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromRGBO(65, 188, 89, 1),

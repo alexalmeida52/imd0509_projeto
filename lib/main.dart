@@ -24,19 +24,19 @@ class MyApp extends StatelessWidget {
         AppRoutes.LOGIN: (ctx) => Login()
       },
       theme: ThemeData().copyWith(
-              colorScheme: ThemeData()
-                  .colorScheme
-                  .copyWith(
-                    primary: Color.fromRGBO(65, 188, 89, 1), 
-                    secondary: Color.fromRGBO(28, 45, 62, 1)
-                  ),
-              textTheme: ThemeData().textTheme.copyWith(
-                headline6: TextStyle(
-                  fontWeight: FontWeight.bold, 
-                  fontSize: 14
-                )
+          colorScheme: ThemeData()
+          .colorScheme
+          .copyWith(
+              primary: Color.fromRGBO(65, 188, 89, 1),
+              secondary: Color.fromRGBO(28, 45, 62, 1)
+          ),
+          textTheme: ThemeData().textTheme.copyWith(
+            headline6: TextStyle(
+              fontWeight: FontWeight.bold, 
+              fontSize: 14
               )
-            ),
+            )
+          ),
     );
   }
 }
@@ -55,12 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     AvailableDoctors(),
+    Text('PESQUISAR', style: optionStyle),
     Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
+      'Agendar',
       style: optionStyle,
     ),
   ];
@@ -71,37 +68,48 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String getScreenName(int index) {
+    switch (index) {
+      case 0:
+        return 'PESQUISAR';
+      case 1:
+        return 'AGENDAR';
+      default:
+        return 'DESCONHECIDO';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 150,
-        title: Text('PESQUISAR', style: TextStyle(fontSize: 30),),
-        centerTitle: true,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromRGBO(65, 188, 89, 1),
-        fixedColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Pesquisar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt),
-            label: 'Consultas',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Perfil',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex)
-      ) // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        appBar: AppBar(
+          toolbarHeight: 150,
+          title: Text(getScreenName(_selectedIndex), style: TextStyle(fontSize: 30),),
+          centerTitle: true,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Color.fromRGBO(65, 188, 89, 1),
+          fixedColor: Colors.white,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Pesquisar',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.receipt),
+              label: 'Consultas',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              label: 'Perfil',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
+        body: Center(
+            child: _widgetOptions.elementAt(_selectedIndex)
+            ) // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 }

@@ -23,20 +23,38 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                 itemCount: doctorsList.length,
                 itemBuilder: (context, index) {
                   final doctor = doctorsList[index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(
-                        AppRoutes.CREATE_SCHEDULE
-                      );
-                    },
-                    child: Card(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(doctor.name),
-                          Text(doctor.speciality),
-                          Text(doctor.address)
-                        ]
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          AppRoutes.CREATE_SCHEDULE
+                        );
+                      },
+                      child: Card(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 80,
+                              width: 80,
+                              child: Image.network('https://cdn-icons-png.flaticon.com/512/219/219983.png'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(doctor.name),
+                                  Text(doctor.speciality),
+                                  Text(doctor.address)
+                                ],
+                              ),
+                            ),
+                            Icon(Icons.bookmark_outline_outlined, size: 40,),
+                          ]
+                        ),
                       ),
                     ),
                   );

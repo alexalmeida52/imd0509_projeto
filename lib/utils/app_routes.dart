@@ -4,4 +4,5 @@ class AppRoutes {
   static const CREATE_SCHEDULE = '/create_schecule';
   static const LOGIN = '/login';
   static const PROFILE_DOCTOR = '/profile_doctor';
+  static const LISTA_CONSULTA = '/listaConsulta';
 }

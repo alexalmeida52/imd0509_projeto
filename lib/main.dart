@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/screens/available_doctors.dart';
 import 'package:imd0509_projeto/screens/create_schedule.dart';
+import 'package:imd0509_projeto/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/screens/login.dart';
 import 'package:imd0509_projeto/screens/profile_doctor.dart';
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
         AppRoutes.CREATE_SCHEDULE: (ctx) => CreateSchedule(),
         AppRoutes.LOGIN: (ctx) => Login(),
-        AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor()
+        AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
+        AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica()
       },
       theme: ThemeData().copyWith(
           colorScheme: ThemeData()
@@ -58,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     AvailableDoctors(),
-    Text('PESQUISAR', style: optionStyle),
+    ConsultaMedica(),
     Text(
       'Agendar',
       style: optionStyle,
@@ -76,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 0:
         return 'PESQUISAR';
       case 1:
-        return 'AGENDAR';
+        return 'MINHAS CONSULTAS';
       default:
         return 'DESCONHECIDO';
     }

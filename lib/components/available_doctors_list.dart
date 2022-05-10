@@ -18,6 +18,7 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
   void _selectedDoctor(Doctor doctor) {
     Navigator.of(context).pushNamed('/perfil-doctor', arguments: doctor);
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +36,6 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                         onTap: () {
                           Navigator.of(context)
                               .pushNamed(AppRoutes.CREATE_SCHEDULE);
-                          
                         },
                         child: Card(
                           child: Padding(
@@ -74,13 +74,31 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                           style: TextStyle(
                                               color: Color.fromRGBO(
                                                   28, 45, 62, 1))),
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            //Navigator.of(context).pushNamed(
+                                      Row(
+                                        children: [
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                //Navigator.of(context).pushNamed(
                                                 //AppRoutes.PERFIL_DOCTOR);
-                                              _selectedDoctor(doctor);
-                                          },
-                                          child: Text('Perfil'))
+                                                _selectedDoctor(doctor);
+                                              },
+                                              child: Text('Perfil')),
+                                          Container(
+                                            padding:
+                                                const EdgeInsets.only(left: 5),
+                                            width: 100,
+                                            child: ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .pushNamed(
+                                                          '/create_schecule',
+                                                          arguments: doctor);
+                                                },
+                                                child:
+                                                    Text('Agendar consulta')),
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                                   Icon(

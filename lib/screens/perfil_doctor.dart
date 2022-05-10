@@ -47,7 +47,7 @@ class PerfilDoctor extends StatelessWidget {
                         child: Column(children: [
                           Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
+                            child: const Text(
                               'Quarta (21 de fevereiro de 2022)',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 17),
@@ -55,32 +55,37 @@ class PerfilDoctor extends StatelessWidget {
                           ),
                           Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 '08:00 - 12:00',
                                 style: TextStyle(color: Colors.black54),
                               )),
                           Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 'Hospital HappyVida, Zona Norte',
                                 style: TextStyle(color: Colors.black54),
                               )),
                           Container(
                               alignment: Alignment.centerLeft,
-                              child: Text(
+                              child: const Text(
                                 '6 horários disponíveis',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400, fontSize: 15),
                               )),
-                          Container(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                'AGENDAR',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    color: Color.fromRGBO(65, 188, 89, 1)),
-                              )),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).pushNamed('/create_schecule', arguments: doctor);
+                            },
+                            child: Container(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  'AGENDAR',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17,
+                                      color: Color.fromRGBO(65, 188, 89, 1)),
+                                )),
+                          ),
                         ]),
                       )
                     ]),

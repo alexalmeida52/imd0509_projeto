@@ -15,6 +15,9 @@ class AvailableDoctorsList extends StatefulWidget {
 }
 
 class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
+  void _selectedDoctor(Doctor doctor) {
+    Navigator.of(context).pushNamed('/perfil-doctor', arguments: doctor);
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,6 +35,7 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                         onTap: () {
                           Navigator.of(context)
                               .pushNamed(AppRoutes.CREATE_SCHEDULE);
+                          
                         },
                         child: Card(
                           child: Padding(
@@ -69,7 +73,14 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                       Text(doctor.address,
                                           style: TextStyle(
                                               color: Color.fromRGBO(
-                                                  28, 45, 62, 1)))
+                                                  28, 45, 62, 1))),
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            //Navigator.of(context).pushNamed(
+                                                //AppRoutes.PERFIL_DOCTOR);
+                                              _selectedDoctor(doctor);
+                                          },
+                                          child: Text('Perfil'))
                                     ],
                                   ),
                                   Icon(

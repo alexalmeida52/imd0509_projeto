@@ -15,9 +15,9 @@ class AvailableDoctorsList extends StatefulWidget {
 }
 
 class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
-  void _selectedDoctor(Doctor doctor) {
-    Navigator.of(context).pushNamed('/perfil-doctor', arguments: doctor);
-  }
+  // void _selectedDoctor(Doctor doctor) {
+  //   Navigator.of(context).pushNamed('/perfil-doctor', arguments: doctor);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +78,10 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                         children: [
                                           ElevatedButton(
                                               onPressed: () {
-                                                //Navigator.of(context).pushNamed(
-                                                //AppRoutes.PERFIL_DOCTOR);
-                                                _selectedDoctor(doctor);
+                                                Navigator.of(context).pushNamed(
+                                                    '/profile_doctor',
+                                                    arguments: doctor);
+                                                //_selectedDoctor(doctor);
                                               },
                                               child: Text('Perfil')),
                                           Container(

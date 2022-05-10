@@ -3,7 +3,7 @@ import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/screens/available_doctors.dart';
 import 'package:imd0509_projeto/screens/create_schedule.dart';
 import 'package:imd0509_projeto/screens/login.dart';
-import 'package:imd0509_projeto/screens/perfil_doctor.dart';
+import 'package:imd0509_projeto/screens/profile_doctor.dart';
 
 import 'utils/app_routes.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
         AppRoutes.CREATE_SCHEDULE: (ctx) => CreateSchedule(),
         AppRoutes.LOGIN: (ctx) => Login(),
-        '/perfil-doctor': (context) => PerfilDoctor()
+        AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor()
       },
       theme: ThemeData().copyWith(
           colorScheme: ThemeData()

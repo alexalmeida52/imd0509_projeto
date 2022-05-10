@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/doctor.dart';
 
-class PerfilDoctor extends StatelessWidget {
+class ProfileDoctor extends StatelessWidget {
   // final Doctor _doctor;
   // const PerfilDoctor(this._doctor);
   @override

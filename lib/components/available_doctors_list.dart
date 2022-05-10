@@ -46,10 +46,10 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                       shape: BoxShape.circle,
                                       image: new DecorationImage(
                                           fit: BoxFit.fill,
-                                          image: new NetworkImage(
+                                          image: new AssetImage(
                                               doctor.avatarUrl != null 
-                                              ? doctor.avatarUrl! 
-                                              : 'https://cdn-icons-png.flaticon.com/512/219/219983.png'
+                                              ? 'assets/${doctor.avatarUrl!}' 
+                                              : 'assets/user_default.png'
                                           )
                                       )
                                   )),

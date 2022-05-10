@@ -3,23 +3,54 @@ import '../../models/doctor.dart';
 final List<Doctor> doctorsListMocked = [
   new Doctor(
     'Dr. José Alex', 
-    'Cardioligia', 
+    'Cardiologista', 
     'myClinic, Lagoa Nova, Natal',
-    'https://arquivos.info.ufrn.br/arquivos/2018100211b01a485908218139036ba4d/_LNO4863.jpg'
+    'alex.jpg'
   ),  
   new Doctor(
-    'Dr. Fabricio Cruz', 'Odontologia', 
+    'Dr. Fabricio Cruz', 
+    'Dentista', 
     'myClinic, Lagoa Nova, Natal',
-    'https://arquivos.info.ufrn.br/arquivos/2019110132191458231703e99054570db/fabricio1.png'
+    'fabricio.jpg'
+  ), 
+  new Doctor(
+    'Dra. Karla Moura', 
+    'Nutricionista', 
+    'myClinic, Lagoa Nova, Natal',
+    'karla.jpg'
   ),  
-  new Doctor('Dr. Lucas Silva', 
+  new Doctor('Dr. Victor Pinheiro', 
   'Terapia', 
   'myClinic, Lagoa Nova, Natal',
-  'https://arquivos.info.ufrn.br/arquivos/2021049135b5419934521f741f731645e/IMG_20200210_144233.jpg'
+  'victor.jpg'
   ),
-  new Doctor('Dr. Bruno Wagner', 
-  'Terapia', 
+  new Doctor('Dr. Felipe Panda', 
+  'Veterinário', 
   'myClinic, Lagoa Nova, Natal',
-  'https://arquivos.info.ufrn.br/arquivos/2018155145e7425630223d504d9255b3b/IMG_20141210_085648587.jpg'
+  'felipe.jpg'
   ),
+  new Doctor(
+    'Dra. Jessica Karoline', 
+    'Biomédica', 
+    'myClinic, Lagoa Nova, Natal',
+    'jessica.jpg'
+  ), 
+  new Doctor(
+    'Dr. Lucio Neto', 
+    'Educador Físico', 
+    'myClinic, Lagoa Nova, Natal',
+    'lucio.jpg'
+  ), 
+  new Doctor(
+    'Dr. Elias Anderson', 
+    'Urologista', 
+    'myClinic, Lagoa Nova, Natal',
+    'elias.jpg'
+  ), 
+  new Doctor(
+    'Dr. Leonardo Mauricio', 
+    'Neurologista', 
+    'myClinic, Lagoa Nova, Natal',
+    'leo.jpg'
+  ), 
 ];

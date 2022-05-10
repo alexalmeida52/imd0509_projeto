@@ -38,7 +38,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
     return Container(
       color: Color.fromRGBO(242, 242, 242, 1),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding: const EdgeInsets.only(top: 18.0, left: 18.0, right: 18.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -8,23 +8,27 @@ import '../models/consultas.dart';
 import '../utils/app_routes.dart';
 
 class ListaConsulta extends StatefulWidget {
+  List<Consulta> _filterListConsulta;
+
+  ListaConsulta(this._filterListConsulta);
+
   @override
   State<ListaConsulta> createState() => _ListaConsultaState();
 }
 
 class _ListaConsultaState extends State<ListaConsulta> {
-  List<Consulta> consultaList = consultaListMocked;
+  // List<Consulta> consultaList = consultaListMocked;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: consultaList.isEmpty
+        child: widget._filterListConsulta.isEmpty
             ? Text('Nenhuma tarefa cadastrada')
             : ListView.builder(
                 shrinkWrap: true,
-                itemCount: consultaList.length,
+                itemCount: widget._filterListConsulta.length,
                 itemBuilder: (context, index) {
-                  final consulta = consultaList[index];
+                  final consulta = widget._filterListConsulta[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 0.8),
                     child: InkWell(

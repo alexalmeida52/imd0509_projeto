@@ -1,14 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/components/listaConsultas.dart';
 
+import '../models/consultas.dart';
 import '../utils/app_routes.dart';
+import '../utils/mock/consultaList.dart';
 
 class ConsultaMedica extends StatefulWidget {
   @override
   State<ConsultaMedica> createState() => _ConsultaMedicaState();
+  
 }
 
 class _ConsultaMedicaState extends State<ConsultaMedica> {
+  List<Consulta> _consutList = consultaListMocked;
+  List<Consulta> _filterListConsulta = [];
+
+  initState() {
+    // at the beginning, all users are shown
+    _filterListConsulta = _consutList;
+    super.initState();
+  }
+
+  _filterConsulta() {
+    //print(value);
+    setState(() {
+      _filterListConsulta = _consutList
+          .where((consulta) =>
+               consulta.data.compareTo(DateTime.now()) < 0)
+          .toList();
+    });
+  }
+
+  _filterConsultaFuturas() {
+    setState(() {
+      _filterListConsulta = _consutList
+          .where((consulta) =>
+               consulta.data.compareTo(DateTime.now()) > 0)
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,20 +49,40 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TextField(
-            //   decoration: InputDecoration(
-            //     fillColor: Colors.white,
-            //     filled: true,
-            //     contentPadding: EdgeInsets.all(18.0),
-            //     // label: Text('Nome do profissional', style: TextStyle(color: Colors.black.withOpacity(0.3), fontWeight: FontWeight.bold),),
-            //     border: OutlineInputBorder(
-            //       borderSide: BorderSide(
-            //         width: 2.0
-            //       ),
-            //       borderRadius: BorderRadius.circular(0)
-            //     ),
-            //   ),
-            // ),
+            Container(
+                  alignment: Alignment.bottomCenter,
+                  margin: const EdgeInsets.only(left: 125),
+                  child: Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: const EdgeInsets.all(8.0),
+                        //color: Colors.red,
+                        child: ElevatedButton(
+                          onPressed: _filterConsulta,
+                          child: Text('PASSADAS'),
+                          style: ElevatedButton.styleFrom(
+                              primary:  Colors.white,
+                              onPrimary:  Colors.greenAccent,
+                              side: BorderSide(width: 3.0, color: Colors.greenAccent)),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: const EdgeInsets.all(8.0),
+                        //color: Colors.blue,
+                        child: ElevatedButton(
+                          onPressed: _filterConsultaFuturas,
+                          child: Text('FUTURAS'),
+                          style: ElevatedButton.styleFrom(
+                               primary:  Colors.white,
+                               onPrimary: Colors.greenAccent,
+                              side: BorderSide(width: 3.0, color: Colors.greenAccent)),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
             SizedBox(
               height: 20,
             ),
@@ -44,7 +95,7 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
             SizedBox(
               height: 20,
             ),
-            ListaConsulta()
+            ListaConsulta(_filterListConsulta)
           ],
         ),
       ),

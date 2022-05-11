@@ -6,7 +6,7 @@ final List<Consulta> consultaListMocked = [
     'Cardiologista', 
     'myClinic, Lagoa Nova, Natal',
     'alex.jpg',
-    DateTime.now(),
+    DateTime.now().add(Duration(days: 15)),
     60,
     'Pendente'
   ),  
@@ -15,8 +15,8 @@ final List<Consulta> consultaListMocked = [
     'Dentista', 
     'myClinic, Lagoa Nova, Natal',
     'fabricio.jpg',
-    DateTime.now(),
+    DateTime.now().subtract(Duration(days: 15)),
     50,
-    'Confrimado'
+    'Finalizada'
   ),   
 ];

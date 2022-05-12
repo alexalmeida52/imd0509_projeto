@@ -71,7 +71,7 @@ class _ListaConsultaState extends State<ListaConsulta> {
                                   Text(consulta.address),
                                   Text(DateFormat("dd/MM/yyyy").format(consulta.data)),
                                   Text(
-                                    'R\$' + consulta.valor.toStringAsFixed(2),
+                                    'R\$' + consulta.valor.toStringAsFixed(2).replaceAll('.', ','),
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold
                                     ),

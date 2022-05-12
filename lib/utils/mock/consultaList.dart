@@ -7,7 +7,7 @@ final List<Consulta> consultaListMocked = [
     'myClinic, Lagoa Nova, Natal',
     'alex.jpg',
     DateTime.now().add(Duration(days: 15)),
-    60,
+    260,
     'Confirmado'
   ), 
   new Consulta(
@@ -16,7 +16,7 @@ final List<Consulta> consultaListMocked = [
     'myClinic, Lagoa Nova, Natal',
     'elias.jpg',
     DateTime.now().add(Duration(days: 18)),
-    60,
+    360,
     'Pendente'
   ), 
   new Consulta(
@@ -25,7 +25,7 @@ final List<Consulta> consultaListMocked = [
     'myClinic, Lagoa Nova, Natal',
     'karla.jpg',
     DateTime.now().add(Duration(days: 25)),
-    60,
+    160,
     'Pendente'
   ),  
   new Consulta(
@@ -34,7 +34,7 @@ final List<Consulta> consultaListMocked = [
     'myClinic, Lagoa Nova, Natal',
     'fabricio.jpg',
     DateTime.now().subtract(Duration(days: 15)),
-    50,
+    150,
     'Finalizada'
   ),   
   new Consulta(
@@ -52,7 +52,7 @@ final List<Consulta> consultaListMocked = [
     'myClinic, Lagoa Nova, Natal',
     'leo.jpg',
     DateTime.now().subtract(Duration(days: 15)),
-    50,
+    450,
     'Finalizada'
   ),   
 ];

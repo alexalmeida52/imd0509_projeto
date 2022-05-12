@@ -23,7 +23,6 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
   }
 
   _filterDoctors(String value) {
-    print(value);
     setState(() {
       _filteredListDoctors = _doctorsList
           .where((doctor) =>
@@ -49,6 +48,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
                 suffixIcon: InkWell(
                     onTap: () {
                       _searchDoctorController.text = '';
+                      _filterDoctors(_searchDoctorController.text);
                     },
                     child: Icon(Icons.close)),
                 prefixIcon: Icon(Icons.search),

@@ -23,7 +23,7 @@ class _ListaConsultaState extends State<ListaConsulta> {
   Widget build(BuildContext context) {
     return Container(
         child: widget._filterListConsulta.isEmpty
-            ? Text('Nenhuma tarefa cadastrada')
+            ? Text('Nenhuma consulta marcada')
             : ListView.builder(
                 shrinkWrap: true,
                 itemCount: widget._filterListConsulta.length,
@@ -71,7 +71,7 @@ class _ListaConsultaState extends State<ListaConsulta> {
                                   Text(consulta.address),
                                   Text(DateFormat("dd/MM/yyyy").format(consulta.data)),
                                   Text(
-                                    'R\$' + consulta.valor.toString(),
+                                    'R\$' + consulta.valor.toStringAsFixed(2),
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold
                                     ),

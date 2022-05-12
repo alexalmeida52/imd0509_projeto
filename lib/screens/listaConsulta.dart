@@ -50,9 +50,8 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                  alignment: Alignment.bottomCenter,
-                  margin: const EdgeInsets.only(left: 125),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         alignment: Alignment.bottomCenter,

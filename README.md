@@ -3,9 +3,9 @@
 A new Flutter project.
 
 ### Authors:
-    - Fabricio Cruz;
-    - Lucas Silva;
-    - José Alex.
+    - Fabricio Cruz - 20190048119
+    - Lucas Silva - 20190048235
+    - José Alex - 20180144677
 
 ## Getting Started
 

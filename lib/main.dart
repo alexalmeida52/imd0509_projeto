@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
 import 'package:imd0509_projeto/views/screens/create_schedule.dart';
 import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/views/screens/login.dart';
 import 'package:imd0509_projeto/views/screens/profile_doctor.dart';
+import 'package:provider/provider.dart';
 
 import 'utils/app_routes.dart';
 
@@ -59,7 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    AvailableDoctors(),
+    ChangeNotifierProvider(
+      create: (context) => DoctorController(),
+      child: AvailableDoctors()
+    ),
     ConsultaMedica(),
     Text(
       'Agendar',

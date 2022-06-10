@@ -41,17 +41,16 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                    width: 80.0,
-                                    height: 80.0,
-                                    decoration: new BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: new AssetImage(doctor
-                                                        .avatarUrl !=
-                                                    null
-                                                ? 'assets/${doctor.avatarUrl!}'
-                                                : 'assets/user_default.png')))),
+                                  width: 80.0,
+                                  height: 80.0,
+                                  decoration: new BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: new DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(doctor.avatarUrl ?? 'https://cdn-icons-png.flaticon.com/512/219/219986.png')
+                                      )
+                                  )
+                                ),
                                 Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.start,

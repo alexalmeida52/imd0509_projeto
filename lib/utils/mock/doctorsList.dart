@@ -2,55 +2,57 @@ import '../../models/doctor.dart';
 
 final List<Doctor> doctorsListMocked = [
   new Doctor(
-    'Dr. José Alex', 
-    'Cardiologista', 
-    'myClinic, Lagoa Nova, Natal',
-    'alex.jpg'
+    name: 'Dr. José Alex', 
+    speciality: 'Cardiologista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'alex.jpg'
   ),  
   new Doctor(
-    'Dr. Fabricio Cruz', 
-    'Dentista', 
-    'myClinic, Lagoa Nova, Natal',
-    'fabricio.jpg'
+    name: 'Dr. Fabricio Cruz', 
+    speciality: 'Dentista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'fabricio.jpg'
   ), 
   new Doctor(
-    'Dra. Karla Moura', 
-    'Nutricionista', 
-    'myClinic, Lagoa Nova, Natal',
-    'karla.jpg'
+    name: 'Dra. Karla Moura', 
+    speciality: 'Nutricionista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'karla.jpg'
   ),  
-  new Doctor('Dr. Victor Pinheiro', 
-  'Terapia', 
-  'myClinic, Lagoa Nova, Natal',
-  'victor.jpg'
-  ),
-  new Doctor('Dr. Felipe Panda', 
-  'Veterinário', 
-  'myClinic, Lagoa Nova, Natal',
-  'felipe.jpg'
+  new Doctor(
+    name: 'Dr. Victor Pinheiro', 
+    speciality: 'Terapia', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'victor.jpg'
   ),
   new Doctor(
-    'Dra. Jessica Karoline', 
-    'Biomédica', 
-    'myClinic, Lagoa Nova, Natal',
-    'jessica.jpg'
+    name: 'Dr. Felipe Panda', 
+    speciality: 'Veterinário', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'felipe.jpg'
+  ),
+  new Doctor(
+    name: 'Dra. Jessica Karoline', 
+    speciality: 'Biomédica', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'jessica.jpg'
   ), 
   new Doctor(
-    'Dr. Lucio Neto', 
-    'Educador Físico', 
-    'myClinic, Lagoa Nova, Natal',
-    'lucio.jpg'
+    name: 'Dr. Lucio Neto', 
+    speciality: 'Educador Físico', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'lucio.jpg'
   ), 
   new Doctor(
-    'Dr. Elias Anderson', 
-    'Urologista', 
-    'myClinic, Lagoa Nova, Natal',
-    'elias.jpg'
+    name: 'Dr. Elias Anderson', 
+    speciality: 'Urologista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'elias.jpg'
   ), 
   new Doctor(
-    'Dr. Leonardo Mauricio', 
-    'Neurologista', 
-    'myClinic, Lagoa Nova, Natal',
-    'leo.jpg'
+    name: 'Dr. Leonardo Mauricio', 
+    speciality: 'Neurologista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'leo.jpg'
   ), 
 ];

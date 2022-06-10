@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/views/components/available_doctors_list.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/doctor.dart';
 import '../../utils/app_routes.dart';
@@ -18,7 +20,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
 
   initState() {
     // at the beginning, all users are shown
-    _filteredListDoctors = _doctorsList;
+    // _filteredListDoctors = _doctorsList;
     super.initState();
   }
 
@@ -34,6 +36,16 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
 
   @override
   Widget build(BuildContext context) {
+    final doctorController = Provider.of<DoctorController>(context);
+
+    Future<List<Doctor>> getDoctors() async {
+      print('Iniciando o fetch');
+      print('chamando o controller');
+      _filteredListDoctors = await doctorController.fetchDoctorsList();
+      print('controller retornou');
+      return _filteredListDoctors;
+    }
+
     return Container(
       color: Color.fromRGBO(242, 242, 242, 1),
       child: Padding(
@@ -43,12 +55,12 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
           children: [
             TextField(
               controller: _searchDoctorController,
-              onChanged: _filterDoctors,
+              // onChanged: _filterDoctors,
               decoration: InputDecoration(
                 suffixIcon: InkWell(
                     onTap: () {
                       _searchDoctorController.text = '';
-                      _filterDoctors(_searchDoctorController.text);
+                      // _filterDoctors(_searchDoctorController.text);
                     },
                     child: Icon(Icons.close)),
                 prefixIcon: Icon(Icons.search),
@@ -71,13 +83,18 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
             ),
             Text(
               'Médicos disponíveis',
-              style:
-                  TextStyle(color: Color.fromRGBO(28, 45, 62, 1), fontSize: 26),
+              style: TextStyle(
+                  color: Color.fromRGBO(28, 45, 62, 1), fontSize: 26),
             ),
             SizedBox(
               height: 20,
             ),
-            AvailableDoctorsList(_filteredListDoctors)
+            FutureBuilder<List<Doctor>>(
+                future:
+                    getDoctors(), // Uso de um future para esperar a consulta a api
+                builder: (context, snapshot) {
+                  return AvailableDoctorsList(_filteredListDoctors);
+                })
           ],
         ),
       ),

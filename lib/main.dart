@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
-import 'package:imd0509_projeto/screens/available_doctors.dart';
-import 'package:imd0509_projeto/screens/create_schedule.dart';
-import 'package:imd0509_projeto/screens/listaConsulta.dart';
-import 'package:imd0509_projeto/screens/login.dart';
-import 'package:imd0509_projeto/screens/profile_doctor.dart';
+import 'package:imd0509_projeto/views/screens/available_doctors.dart';
+import 'package:imd0509_projeto/views/screens/create_schedule.dart';
+import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
+import 'package:imd0509_projeto/views/screens/login.dart';
+import 'package:imd0509_projeto/views/screens/profile_doctor.dart';
 
 import 'utils/app_routes.dart';
 

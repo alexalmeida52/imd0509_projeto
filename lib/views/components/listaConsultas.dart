@@ -4,8 +4,8 @@ import 'package:imd0509_projeto/utils/mock/consultaList.dart';
 
 import 'package:intl/intl.dart';
 
-import '../models/consultas.dart';
-import '../utils/app_routes.dart';
+import '../../models/consultas.dart';
+import '../../utils/app_routes.dart';
 
 class ListaConsulta extends StatefulWidget {
   List<Consulta> _filterListConsulta;

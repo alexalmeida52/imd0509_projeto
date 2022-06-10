@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/utils/mock/doctorsList.dart';
 
-import '../models/doctor.dart';
-import '../utils/app_routes.dart';
+import '../../models/doctor.dart';
+import '../../utils/app_routes.dart';
 
 class AvailableDoctorsList extends StatefulWidget {
   List<Doctor> _filteredListDoctors;

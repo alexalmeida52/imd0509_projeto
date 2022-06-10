@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:imd0509_projeto/components/available_doctors_list.dart';
+import 'package:imd0509_projeto/views/components/available_doctors_list.dart';
 
-import '../models/doctor.dart';
-import '../utils/app_routes.dart';
-import '../utils/mock/doctorsList.dart';
+import '../../models/doctor.dart';
+import '../../utils/app_routes.dart';
+import '../../utils/mock/doctorsList.dart';
 
 class AvailableDoctors extends StatefulWidget {
   @override

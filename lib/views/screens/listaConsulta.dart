@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:imd0509_projeto/components/listaConsultas.dart';
+import 'package:imd0509_projeto/views/components/listaConsultas.dart';
 
-import '../models/consultas.dart';
-import '../utils/app_routes.dart';
-import '../utils/mock/consultaList.dart';
+import '../../models/consultas.dart';
+import '../../utils/app_routes.dart';
+import '../../utils/mock/consultaList.dart';
 
 class ConsultaMedica extends StatefulWidget {
   @override

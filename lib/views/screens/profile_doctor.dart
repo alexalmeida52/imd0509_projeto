@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/doctor.dart';
+import '../../models/doctor.dart';
 
 class ProfileDoctor extends StatelessWidget {
   // final Doctor _doctor;

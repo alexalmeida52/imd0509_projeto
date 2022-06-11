@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
           AppRoutes.LOGIN: (ctx) => Login(),
           AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
           AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
-          AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors()
+          AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors(),
+          AppRoutes.LISTA_PACIENTES: (ctx) => PatientPerfil()
         },
         theme: ThemeData().copyWith(
             colorScheme: ThemeData()
@@ -75,8 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     AvailableDoctors(),
     ConsultaMedica(),
-    PatientPerfil(),
-
+    PatientPerfil()
   ];
 
   void _onItemTapped(int index) {

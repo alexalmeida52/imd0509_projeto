@@ -13,13 +13,14 @@ class PatientPerfil extends StatefulWidget {
 }
 
 class _PatientPerfilState extends State<PatientPerfil> {
-  List<Patient> _patientsList = patienteListMocked;
-
+  List<Patient> _patientsList = patientListMocked;
   List<Patient> _filterListPatients = [];
-
   String _searchText = '';
-
   final _searchPatientsController = TextEditingController();
+
+  initState() {
+    super.initState();
+  }
 
   _filterPatients(String value) {
     setState(() {
@@ -34,6 +35,7 @@ class _PatientPerfilState extends State<PatientPerfil> {
   @override
   Widget build(BuildContext context) {
     final patientController = Provider.of<PatientController>(context);
+
     Future<List<Patient>> getPatients() async {
       print('Iniciando o fetch');
       print('chamando o controller');
@@ -87,9 +89,9 @@ class _PatientPerfilState extends State<PatientPerfil> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: _patientsList.length,
+                  itemCount:_filterListPatients.length,
                   itemBuilder: (BuildContext ctx, index) {
-                    final patient = _patientsList[index];
+                    final patient = _filterListPatients[index];
                      return Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: Stack(
@@ -113,60 +115,14 @@ class _PatientPerfilState extends State<PatientPerfil> {
                                             style: TextStyle(
                                                 color:
                                                     Color.fromRGBO(28, 45, 62, 1))),                                        
-                                        // Row(
-                                        //   children: [
-                                        //     ElevatedButton(
-                                        //         onPressed: () {
-                                        //           Navigator.of(context).pushNamed(
-                                        //               '/profile_doctor',
-                                        //               arguments: doctor);
-                                        //           //_selectedDoctor(doctor);
-                                        //         },
-                                        //         child: Text('Perfil')),
-                                        //     Container(
-                                        //       padding:
-                                        //           const EdgeInsets.only(left: 5),
-                                        //       width: 100,
-                                        //       child: ElevatedButton(
-                                        //           onPressed: () {
-                                        //             Navigator.of(context).pushNamed(
-                                        //                 '/create_schecule',
-                                        //                 arguments: doctor);
-                                        //           },
-                                        //           child: Text('Agendar consulta')),
-                                        //     ),
-                                        //   ],
-                                        // )
                                       ],
                                     ),
                                     Row(
                                       children: [
-                                        IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
-                                        IconButton(onPressed: (){}, icon: Icon(Icons.delete))
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.edit),color:  Theme.of(context).colorScheme.primary),
+                                        IconButton(onPressed: (){}, icon: Icon(Icons.delete), color: Colors.red,)
                                       ],
                                     )
-                                    // if(!widget.isManagement!) Icon(
-                                    //   Icons.bookmark_outline_outlined,
-                                    //   size: 40,
-                                    //   color: Color.fromRGBO(28, 45, 62, 1),
-                                    // ),
-                                    // if(widget.isManagement!) Column(
-                                    //   children: [
-                                    //     ElevatedButton(
-                                    //       onPressed: () {
-                                    //       },
-                                    //       child: Icon(Icons.edit),
-                                    //       style: ElevatedButton.styleFrom(primary: Colors.blue),
-                                    //     ),
-                                    //     SizedBox(width: 10,),
-                                    //     ElevatedButton(
-                                    //       onPressed: () {
-                                    //       },
-                                    //       child: Icon(Icons.delete),
-                                    //       style: ElevatedButton.styleFrom(primary: Colors.red),
-                                    //     ),
-                                    //   ],
-                                    // )
                                   ]),
                             ),
                           ),
@@ -181,27 +137,3 @@ class _PatientPerfilState extends State<PatientPerfil> {
     );
   }
 }
-
-// return Expanded(
-//                       child: Column(children: [
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                           children: [
-//                             Text(patient.name + ' ' + patient.last_name,
-//                                 style: TextStyle(
-//                                     fontSize: 18,
-//                                     color: Color.fromRGBO(28, 45, 62, 1))),
-//                             IconButton(onPressed: () {}, icon: Icon(Icons.edit))
-//                           ],
-//                         ),
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                           children: [
-//                             Text('Sexo: '+  patient.gender + ' Nascimento: ' + patient.birthday,
-//                                 style: TextStyle(
-//                                     fontSize: 15,
-//                                     color: Color.fromRGBO(28, 45, 62, 1))),
-//                           ],
-//                         ),
-//                       ]),
-//                     );

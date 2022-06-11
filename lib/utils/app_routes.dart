@@ -6,4 +6,5 @@ class AppRoutes {
   static const PROFILE_DOCTOR = '/profile_doctor';
   static const LISTA_CONSULTA = '/listaConsulta';
   static const GERRENCIAR_PROFISSIONAIS = '/gerenciar_profissionais';
+  static const LISTA_PACIENTES = '/listaPacientes';
 }

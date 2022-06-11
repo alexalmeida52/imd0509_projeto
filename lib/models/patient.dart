@@ -4,11 +4,11 @@ class Patient {
   String gender;
   String birthday;
   String email;
-  String? address;
+  String phone;
   String password;
-  String? avatarUrl;
+  //String? avatarUrl;
 
-  Patient({required this.name, required this.last_name, required this.gender,required this.email,this.address, this.avatarUrl, required this.birthday, required this.password});
+  Patient({required this.name, required this.last_name, required this.gender,required this.email, required this.birthday, required this.password, required this.phone});
   factory Patient.fromJson(Map<String, dynamic> json){
     return Patient( 
       name: json['name'],
@@ -17,6 +17,7 @@ class Patient {
       email: json['email'],
       password: json['password'],
       birthday: json['birthday'],
+      phone: json['phone']
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:imd0509_projeto/models/patient.dart';
 
-final List<Patient> patienteListMocked = [
+final List<Patient> patientListMocked = [
   new Patient(
     name: 'Kiko', 
     last_name: 'Silva', 
@@ -8,6 +8,7 @@ final List<Patient> patienteListMocked = [
     password: '1234',
     birthday: "2000-01-01",
     gender: 'M',
+    phone: '11111111111'
   ),
   new Patient(
     name: 'Chiquinha', 
@@ -16,6 +17,7 @@ final List<Patient> patienteListMocked = [
     password: '1234',
     birthday: "2000-01-01",
     gender: 'F',
+    phone: '11111111111'
   ),
   new Patient(
     name: 'Chaves', 
@@ -24,6 +26,7 @@ final List<Patient> patienteListMocked = [
     password: '1234',
     birthday: "2000-01-01",
     gender: 'M',
+    phone: '11111111111'
   ),
   new Patient(
     name: 'Madruga', 
@@ -32,6 +35,7 @@ final List<Patient> patienteListMocked = [
     password: '1234',
     birthday: "2000-01-01",
     gender: 'M',
+    phone: '11111111111'
   ),  
   
 ];

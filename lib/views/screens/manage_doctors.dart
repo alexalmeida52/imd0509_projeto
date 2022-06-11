@@ -16,18 +16,18 @@ class ManageDoctors extends StatefulWidget {
 }
 
 class _ManageDoctorsState extends State<ManageDoctors> {
-  List<Doctor> doctorList = [];
 
   @override
   Widget build(BuildContext context) {
-    final doctorController = Provider.of<DoctorController>(context);
+    final doctorController =
+        Provider.of<DoctorController>(context, listen: false);
 
     Future<List<Doctor>> getDoctors() async {
       print('Iniciando o fetch');
       print('chamando o controller');
-      doctorList = await doctorController.fetchDoctorsList();
+      final response = await doctorController.fetchDoctorsList();
       print('controller retornou');
-      return doctorList;
+      return response;
     }
 
     return Scaffold(
@@ -45,16 +45,22 @@ class _ManageDoctorsState extends State<ManageDoctors> {
       body: Column(
         children: [
           FutureBuilder<List<Doctor>>(
-            future:
-                getDoctors(), // Uso de um future para esperar a consulta a api
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                print('sucesso!!!');
-                return AvailableDoctorsList(filteredListDoctors: doctorList, isManagement: true);
-              } else {
-                return Text('Erro ao buscar dados');
-              }
-          }),
+              future:
+                  getDoctors(), // Uso de um future para esperar a consulta a api
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  print('sucesso!!!');
+                  return Consumer<DoctorController>(
+                      builder: (context, doctors, child) {
+                    return AvailableDoctorsList(
+                        filteredListDoctors: doctors.getDoctors(), 
+                        isManagement: true
+                    );
+                  });
+                } else {
+                  return Text('Erro ao buscar dados');
+                }
+              }),
         ],
       ),
       drawer: MainDrawer(),

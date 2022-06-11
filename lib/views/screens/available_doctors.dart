@@ -36,12 +36,12 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
 
   @override
   Widget build(BuildContext context) {
-    final doctorController = Provider.of<DoctorController>(context);
+    final doctorController = Provider.of<DoctorController>(context, listen: false);
 
     Future<List<Doctor>> getDoctors() async {
       print('Iniciando o fetch');
       print('chamando o controller');
-      _filteredListDoctors = await doctorController.fetchDoctorsList();
+      await doctorController.fetchDoctorsList();
       print('controller retornou');
       return _filteredListDoctors;
     }
@@ -93,7 +93,11 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
                 future:
                     getDoctors(), // Uso de um future para esperar a consulta a api
                 builder: (context, snapshot) {
-                  return AvailableDoctorsList(filteredListDoctors: _filteredListDoctors);
+                  return Consumer<DoctorController>(
+                    builder: (context, doctor, chilg) {
+                      return AvailableDoctorsList(filteredListDoctors: doctor.getDoctors());
+                    }
+                  );
                 })
           ],
         ),

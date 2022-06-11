@@ -46,4 +46,42 @@ class DoctorController extends ChangeNotifier {
     }
     return response;
   }
+
+  Future<void> saveDoctor(Doctor doctor) {
+    if (doctor.id != null) {
+      return updateDoctor(doctor);
+    } else {
+      return createDoctor(doctor);
+    }
+  }
+
+  Future<void> updateDoctor(Doctor doctor) async {
+    print('Atualizando doctor');
+    print(doctor.name);
+    final response = await http.put(
+        Uri.parse('${Api.baseUrl}${Api.doctorsPath}/${doctor.id}'),
+            headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          "name": doctor.name,
+          "speciality": doctor.speciality,
+        }));
+
+    if (response.statusCode == 204) {
+      print('Atualizado doctor');
+
+      int index = _doctorsList.indexWhere((p) => p.id == doctor.id);
+
+      if (index >= 0) {
+        _doctorsList[index] = doctor;
+        notifyListeners();
+      }
+    }
+    return Future.value();
+  }
+
+  Future<void> createDoctor(Doctor doctor) {
+    return Future.value();
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/utils/mock/doctorsList.dart';
+import 'package:imd0509_projeto/views/components/doctor_form.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/doctor.dart';
@@ -112,29 +113,15 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                       children: [
                                         ElevatedButton(
                                           onPressed: () {
-                                            // showModalBottomSheet<void>(
-                                            //   context: context,
-                                            //   builder: (BuildContext context) {
-                                            //     return SingleChildScrollView(
-                                            //       child: Padding(
-                                            //         padding: const EdgeInsets.all(8.0),
-                                            //         child: Column(
-                                            //           children: [
-                                            //             Text(
-                                            //               place.titulo,
-                                            //               style: TextStyle(
-                                            //                 fontSize: 26,
-                                            //                 color: Colors.purple,
-                                            //                 fontWeight: FontWeight.bold
-                                            //               ),
-                                            //             ),
-                                            //             Container(child: LugarForm(place, index)),
-                                            //           ],
-                                            //         ),
-                                            //       ),
-                                            //     );
-                                            //   },
-                                            // );
+                                            showModalBottomSheet<void>(
+                                              isScrollControlled: true,
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return SingleChildScrollView(
+                                                  child: Container(child: DoctorForm(doctor, index)),
+                                                );
+                                              },
+                                            );
 
                                             // ScaffoldMessenger.of(context).showSnackBar(
                                             //   SnackBar(

@@ -21,33 +21,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'myHealth',
-      initialRoute: '/',
-      debugShowCheckedModeBanner: false,
-      routes: {
-        AppRoutes.HOME: (ctx) => MyHomePage(title: 'myHealth',),
-        AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
-        AppRoutes.CREATE_SCHEDULE: (ctx) => CreateSchedule(),
-        AppRoutes.LOGIN: (ctx) => Login(),
-        AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
-        AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
-        AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors()
-      },
-      theme: ThemeData().copyWith(
-          colorScheme: ThemeData()
-          .colorScheme
-          .copyWith(
-              primary: Color.fromRGBO(65, 188, 89, 1),
-              secondary: Color.fromRGBO(28, 45, 62, 1)
-          ),
-          textTheme: ThemeData().textTheme.copyWith(
-            headline6: TextStyle(
-              fontWeight: FontWeight.bold, 
-              fontSize: 14
+    return ChangeNotifierProvider(
+      create: (context) => DoctorController(),
+      child: MaterialApp(
+        title: 'myHealth',
+        initialRoute: '/',
+        debugShowCheckedModeBanner: false,
+        routes: {
+          AppRoutes.HOME: (ctx) => MyHomePage(title: 'myHealth',),
+          AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),
+          AppRoutes.CREATE_SCHEDULE: (ctx) => CreateSchedule(),
+          AppRoutes.LOGIN: (ctx) => Login(),
+          AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
+          AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
+          AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors()
+        },
+        theme: ThemeData().copyWith(
+            colorScheme: ThemeData()
+            .colorScheme
+            .copyWith(
+                primary: Color.fromRGBO(65, 188, 89, 1),
+                secondary: Color.fromRGBO(28, 45, 62, 1)
+            ),
+            textTheme: ThemeData().textTheme.copyWith(
+              headline6: TextStyle(
+                fontWeight: FontWeight.bold, 
+                fontSize: 14
+                )
               )
-            )
-          ),
+            ),
+      ),
     );
   }
 }
@@ -65,10 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    ChangeNotifierProvider(
-      create: (context) => DoctorController(), 
-      child: AvailableDoctors()
-    ),
+    AvailableDoctors(),
     ConsultaMedica(),
     Text(
       'Agendar',

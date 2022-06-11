@@ -93,7 +93,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
                 future:
                     getDoctors(), // Uso de um future para esperar a consulta a api
                 builder: (context, snapshot) {
-                  return AvailableDoctorsList(_filteredListDoctors);
+                  return AvailableDoctorsList(filteredListDoctors: _filteredListDoctors);
                 })
           ],
         ),

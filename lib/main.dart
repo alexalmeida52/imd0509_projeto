@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
+import 'package:imd0509_projeto/controllers/patient_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/views/components/main_drawer.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
@@ -7,6 +8,7 @@ import 'package:imd0509_projeto/views/screens/create_schedule.dart';
 import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/views/screens/login.dart';
 import 'package:imd0509_projeto/views/screens/manage_doctors.dart';
+import 'package:imd0509_projeto/views/screens/patient_perfil.dart';
 import 'package:imd0509_projeto/views/screens/profile_doctor.dart';
 import 'package:provider/provider.dart';
 
@@ -21,8 +23,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DoctorController(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => DoctorController()),
+        ChangeNotifierProvider(create: (context) => PatientController())
+      ],
       child: MaterialApp(
         title: 'myHealth',
         initialRoute: '/',
@@ -70,10 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     AvailableDoctors(),
     ConsultaMedica(),
-    Text(
-      'Agendar',
-      style: optionStyle,
-    ),
+    PatientPerfil(),
+
   ];
 
   void _onItemTapped(int index) {
@@ -89,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         return 'MINHAS CONSULTAS';
       default:
-        return 'DESCONHECIDO';
+        return 'PACIENTES';
     }
   }
 

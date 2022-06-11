@@ -8,9 +8,10 @@ import '../../models/consultas.dart';
 import '../../utils/app_routes.dart';
 
 class ListaConsulta extends StatefulWidget {
-  List<Consulta> _filterListConsulta;
+  List<Consulta> filteredListConsults;
+  bool? isManagement;
 
-  ListaConsulta(this._filterListConsulta);
+  ListaConsulta({required this.filteredListConsults, this.isManagement = false});
 
   @override
   State<ListaConsulta> createState() => _ListaConsultaState();
@@ -22,13 +23,14 @@ class _ListaConsultaState extends State<ListaConsulta> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: widget._filterListConsulta.isEmpty
+        child: widget.filteredListConsults.isEmpty
             ? Text('Nenhuma consulta marcada')
-            : ListView.builder(
+            : Expanded(
+              child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: widget._filterListConsulta.length,
+                itemCount: widget.filteredListConsults.length,
                 itemBuilder: (context, index) {
-                  final consulta = widget._filterListConsulta[index];
+                  final consulta = widget.filteredListConsults[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 0.8),
                     child: InkWell(
@@ -98,6 +100,7 @@ class _ListaConsultaState extends State<ListaConsulta> {
                     ),
                   );
                 },
-              ));
+              ),
+            ));
   }
 }

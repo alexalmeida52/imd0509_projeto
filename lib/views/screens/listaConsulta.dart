@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/views/components/listaConsultas.dart';
+import 'package:imd0509_projeto/controllers/consult_controller.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/consultas.dart';
 import '../../utils/app_routes.dart';
@@ -45,6 +47,17 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
 
   @override
   Widget build(BuildContext context) {
+
+    final consultsController = Provider.of<ConsultController>(context);
+
+    Future<List<Consulta>> getConsults() async {
+      print('Iniciando o fetch');
+      print('chamando o controller');
+      _filterListConsulta = await consultsController.fetchConsultList();
+      print('controller retornou');
+      return _filterListConsulta;
+    }
+
     return Container(
       color: Color.fromRGBO(242, 242, 242, 1),
       child: Padding(
@@ -105,7 +118,13 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
             SizedBox(
               height: 20,
             ),
-            ListaConsulta(_filterListConsulta)
+            FutureBuilder<List<Consulta>>(
+                future:
+                    getConsults(), // Uso de um future para esperar a consulta a api
+                builder: (context, snapshot) {
+                  return ListaConsulta(filteredListConsults: _filterListConsulta);
+                })
+            
           ],
         ),
       ),

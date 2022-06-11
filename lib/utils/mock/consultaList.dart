@@ -2,57 +2,57 @@ import '../../models/consultas.dart';
 
 final List<Consulta> consultaListMocked = [
   new Consulta(
-    'Dr. José Alex', 
-    'Cardiologista', 
-    'myClinic, Lagoa Nova, Natal',
-    'alex.jpg',
-    DateTime.now().add(Duration(days: 15)),
-    260,
-    'Confirmado'
+    name: 'Dr. José Alex', 
+    speciality: 'Cardiologista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'alex.jpg',
+    data: DateTime.now().add(Duration(days: 15)),
+    valor: 260,
+    status: 'Confirmado'
   ), 
   new Consulta(
-    'Dr. Elias Anderson', 
-    'Urologista', 
-    'myClinic, Lagoa Nova, Natal',
-    'elias.jpg',
-    DateTime.now().add(Duration(days: 18)),
-    360,
-    'Pendente'
+   name: 'Dr. Elias Anderson', 
+   speciality: 'Urologista', 
+   address: 'myClinic, Lagoa Nova, Natal',
+   avatarUrl: 'elias.jpg',
+   data: DateTime.now().add(Duration(days: 18)),
+   valor: 360,
+   status: 'Pendente'
   ), 
   new Consulta(
-    'Dr. Karla Moura', 
-    'Nutricionista', 
-    'myClinic, Lagoa Nova, Natal',
-    'karla.jpg',
-    DateTime.now().add(Duration(days: 25)),
-    160,
-    'Pendente'
+    name: 'Dr. Karla Moura', 
+    speciality: 'Nutricionista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'karla.jpg',
+    data: DateTime.now().add(Duration(days: 25)),
+    valor: 160,
+    status: 'Pendente'
   ),  
   new Consulta(
-    'Dr. Fabricio Cruz', 
-    'Dentista', 
-    'myClinic, Lagoa Nova, Natal',
-    'fabricio.jpg',
-    DateTime.now().subtract(Duration(days: 15)),
-    150,
-    'Finalizada'
+    name: 'Dr. Fabricio Cruz', 
+    speciality: 'Dentista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'fabricio.jpg',
+    data: DateTime.now().subtract(Duration(days: 15)),
+    valor: 150,
+    status: 'Finalizada'
   ),   
   new Consulta(
-    'Dr. Victor Pinheiro', 
-    'Terapia', 
-    'myClinic, Lagoa Nova, Natal',
-    'victor.jpg',
-    DateTime.now().subtract(Duration(days: 25)),
-    249.99,
-    'Finalizada'
+    name: 'Dr. Victor Pinheiro', 
+    speciality: 'Terapia', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'victor.jpg',
+    data: DateTime.now().subtract(Duration(days: 25)),
+    valor: 249.99,
+    status: 'Finalizada'
   ),   
   new Consulta(
-    'Dr. Leonardo Mauricio', 
-    'Neurologista', 
-    'myClinic, Lagoa Nova, Natal',
-    'leo.jpg',
-    DateTime.now().subtract(Duration(days: 15)),
-    450,
-    'Finalizada'
+    name:'Dr. Leonardo Mauricio', 
+    speciality: 'Neurologista', 
+    address: 'myClinic, Lagoa Nova, Natal',
+    avatarUrl: 'leo.jpg',
+    data: DateTime.now().subtract(Duration(days: 15)),
+    valor: 450,
+    status: 'Finalizada'
   ),   
 ];

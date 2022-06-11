@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
+import 'package:imd0509_projeto/controllers/consult_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/views/components/main_drawer.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
@@ -21,8 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DoctorController(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DoctorController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ConsultController(),
+        ),
+      ],
       child: MaterialApp(
         title: 'myHealth',
         initialRoute: '/',

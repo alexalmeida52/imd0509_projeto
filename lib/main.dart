@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'myHealth',
       initialRoute: '/',
+      debugShowCheckedModeBanner: false,
       routes: {
         AppRoutes.HOME: (ctx) => MyHomePage(title: 'myHealth',),
         AppRoutes.AVAILABLE_DOCTORS: (ctx) => AvailableDoctors(),

@@ -25,9 +25,7 @@ class ProfileDoctor extends StatelessWidget {
                           shape: BoxShape.circle,
                           image: new DecorationImage(
                               fit: BoxFit.fill,
-                              image: new AssetImage(doctor.avatarUrl != null
-                                  ? 'assets/${doctor.avatarUrl!}'
-                                  : 'assets/user_default.png')))),
+                              image: new NetworkImage(doctor.avatarUrl ?? 'https://cdn-icons-png.flaticon.com/512/219/219986.png')))),
                   Container(
                     padding: const EdgeInsets.all(20),
                     child: Column(

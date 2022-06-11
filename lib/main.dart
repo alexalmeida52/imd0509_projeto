@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
+import 'package:imd0509_projeto/views/components/main_drawer.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
 import 'package:imd0509_projeto/views/screens/create_schedule.dart';
 import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/views/screens/login.dart';
+import 'package:imd0509_projeto/views/screens/manage_doctors.dart';
 import 'package:imd0509_projeto/views/screens/profile_doctor.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +30,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.CREATE_SCHEDULE: (ctx) => CreateSchedule(),
         AppRoutes.LOGIN: (ctx) => Login(),
         AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
-        AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica()
+        AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
+        AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors()
       },
       theme: ThemeData().copyWith(
           colorScheme: ThemeData()
@@ -62,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     ChangeNotifierProvider(
-      create: (context) => DoctorController(),
+      create: (context) => DoctorController(), 
       child: AvailableDoctors()
     ),
     ConsultaMedica(),
@@ -119,7 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Center(
             child: _widgetOptions.elementAt(_selectedIndex)
-            ) // This trailing comma makes auto-formatting nicer for build methods.
-        );
+            ), // This trailing comma makes auto-formatting nicer for build methods.
+        drawer: MainDrawer()
+      );
   }
 }

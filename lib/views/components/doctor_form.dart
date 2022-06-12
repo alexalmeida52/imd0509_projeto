@@ -57,7 +57,7 @@ class _DoctorFormState extends State<DoctorForm> {
           name: name,
           last_name: lastName,
           speciality: speciality,
-          address: 'Local',
+          address: address,
           id: widget.doctorEditing!.id,
           avatarUrl: avatarUrl,
           rating: widget.doctorEditing!.rating

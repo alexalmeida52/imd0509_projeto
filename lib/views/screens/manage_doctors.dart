@@ -57,8 +57,14 @@ class _ManageDoctorsState extends State<ManageDoctors> {
                         isManagement: true
                     );
                   });
-                } else {
+                } else if(snapshot.hasError) {
                   return Text('Erro ao buscar dados');
+                } else {
+                  return Expanded(
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
                 }
               }),
         ],

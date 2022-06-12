@@ -93,11 +93,22 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
                 future:
                     getDoctors(), // Uso de um future para esperar a consulta a api
                 builder: (context, snapshot) {
-                  return Consumer<DoctorController>(
-                    builder: (context, doctor, chilg) {
-                      return AvailableDoctorsList(filteredListDoctors: doctor.getDoctors());
-                    }
-                  );
+                  if(snapshot.hasData) {
+                    return Consumer<DoctorController>(
+                      builder: (context, doctor, chilg) {
+                        return AvailableDoctorsList(filteredListDoctors: doctor.getDoctors());
+                      }
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Erro ao buscar dados');
+                  } else {
+                    return Expanded(
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  
                 })
           ],
         ),

@@ -13,14 +13,13 @@ class AvailableDoctors extends StatefulWidget {
 }
 
 class _AvailableDoctorsState extends State<AvailableDoctors> {
-  List<Doctor> _doctorsList = doctorsListMocked;
+  List<Doctor> _doctorsList = [];
   List<Doctor> _filteredListDoctors = [];
   String _searchText = '';
   final _searchDoctorController = TextEditingController();
 
   initState() {
     // at the beginning, all users are shown
-    // _filteredListDoctors = _doctorsList;
     super.initState();
   }
 
@@ -40,7 +39,8 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
 
     Future<List<Doctor>> getDoctors() async {
       await doctorController.fetchDoctorsList();
-      return _filteredListDoctors;
+      _doctorsList = doctorController.getDoctors();
+      return _doctorsList;
     }
 
     return Container(
@@ -52,7 +52,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
           children: [
             TextField(
               controller: _searchDoctorController,
-              // onChanged: _filterDoctors,
+              onChanged: _filterDoctors,
               decoration: InputDecoration(
                 suffixIcon: InkWell(
                     onTap: () {
@@ -93,7 +93,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
                   if(snapshot.hasData) {
                     return Consumer<DoctorController>(
                       builder: (context, doctor, chilg) {
-                        return AvailableDoctorsList(filteredListDoctors: doctor.getDoctors());
+                        return AvailableDoctorsList(filteredListDoctors: _filteredListDoctors.isEmpty ? _doctorsList : _filteredListDoctors);
                       }
                     );
                   } else if (snapshot.hasError) {

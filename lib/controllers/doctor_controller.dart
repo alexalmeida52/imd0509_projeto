@@ -86,12 +86,33 @@ class DoctorController extends ChangeNotifier {
     return Future.value();
   }
 
-  Future<void> createDoctor(Doctor doctor) {
+  Future<void> createDoctor(Doctor doctor) async {
     print('${doctor.name}');
     print('${doctor.speciality}');
     print('${doctor.address}');
     print('${doctor.avatarUrl}');
     print('${doctor.rating}');
-    return Future.value();
+    
+    final response = await http.post(
+        Uri.parse('${Api.baseUrl}${Api.doctorsPath}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          "name": doctor.name,
+          "last_name": doctor.last_name,
+          "avatar": doctor.avatarUrl,
+          "speciality": doctor.speciality,
+          "gender": "M",
+          "birthday": "1996-10-10",
+          "clinic": "MyHealth",
+          "price": 300.0
+        }));
+
+    if (response.statusCode == 204) {
+      print('Profissional cadastrado');
+      _doctorsList.add(doctor);
+      notifyListeners();
+    }
   }
 }

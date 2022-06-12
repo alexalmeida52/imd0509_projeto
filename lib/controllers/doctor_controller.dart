@@ -57,7 +57,10 @@ class DoctorController extends ChangeNotifier {
 
   Future<void> updateDoctor(Doctor doctor) async {
     print('Atualizando doctor');
-    print(doctor.name);
+    print('name: ${doctor.name}');
+    print('last_name: ${doctor.last_name}');
+    print('avatar: ${doctor.avatarUrl}');
+    print('speciality: ${doctor.speciality}');
     final response = await http.put(
         Uri.parse('${Api.baseUrl}${Api.doctorsPath}/${doctor.id}'),
         headers: <String, String>{
@@ -65,7 +68,9 @@ class DoctorController extends ChangeNotifier {
         },
         body: jsonEncode({
           "name": doctor.name,
-          "speciality": doctor.speciality,
+          "last_name": doctor.last_name,
+          "avatar": doctor.avatarUrl,
+          "speciality": doctor.speciality
         }));
 
     if (response.statusCode == 204) {

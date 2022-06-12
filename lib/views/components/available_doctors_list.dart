@@ -61,7 +61,7 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(doctor.name,
+                                      Text('${doctor.name} ${doctor.last_name}',
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Color.fromRGBO(

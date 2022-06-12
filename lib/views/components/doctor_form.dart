@@ -17,6 +17,7 @@ class DoctorForm extends StatefulWidget {
 
 class _DoctorFormState extends State<DoctorForm> {
   final _nameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   final _specialityController = TextEditingController();
   final _addressController = TextEditingController();
   final _avatarUrlController = TextEditingController();
@@ -26,6 +27,7 @@ class _DoctorFormState extends State<DoctorForm> {
 
   _submitForm() async {
     final name = _nameController.text;
+    final lastName = _lastNameController.text;
     final speciality = _specialityController.text;
     final address = _addressController.text;
     final avatarUrl = _avatarUrlController.text;
@@ -53,15 +55,17 @@ class _DoctorFormState extends State<DoctorForm> {
     if(widget.doctorEditing != null) {
       doctor = new Doctor(
           name: name,
+          last_name: lastName,
           speciality: speciality,
           address: 'Local',
           id: widget.doctorEditing!.id,
-          avatarUrl: widget.doctorEditing!.avatarUrl,
+          avatarUrl: avatarUrl,
           rating: widget.doctorEditing!.rating
       );
     } else {
       doctor = new Doctor(
           name: name,
+          last_name: lastName,
           speciality: speciality,
           address: address,
           avatarUrl: avatarUrl,
@@ -95,6 +99,10 @@ class _DoctorFormState extends State<DoctorForm> {
       print(widget.doctorEditing);
       setState(() {
         _nameController.text = widget.doctorEditing!.name;
+        _lastNameController.text = widget.doctorEditing!.last_name;
+        _addressController.text = widget.doctorEditing!.address;
+        _ratingController.text = widget.doctorEditing!.rating != null ? (widget.doctorEditing!.rating).toString() : '0';
+        _avatarUrlController.text = widget.doctorEditing!.avatarUrl ?? '';
         _specialityController.text = widget.doctorEditing!.speciality.toString();
       });
     }
@@ -144,14 +152,31 @@ class _DoctorFormState extends State<DoctorForm> {
               height: 20,
             ),
             TextField(
-              controller: _specialityController,
+              onChanged: (value) => {setInputError(value, 1)},
+              controller: _lastNameController,
               decoration: InputDecoration(
-                labelText: 'Especialidade',
+                labelText: 'Sobrenome',
                 helperText: errors[1] ? '*Campo obrigatório' : null,
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                       color: errors[1] ? Colors.red : Colors.green.shade200,
+                      width: 2.0),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: _specialityController,
+              decoration: InputDecoration(
+                labelText: 'Especialidade',
+                helperText: errors[2] ? '*Campo obrigatório' : null,
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: errors[2] ? Colors.red : Colors.green.shade200,
                       width: 2.0),
                 ),
               ),
@@ -166,26 +191,26 @@ class _DoctorFormState extends State<DoctorForm> {
               controller: _addressController,
               decoration: InputDecoration(
                 labelText: 'Endereço',
-                helperText: errors[2] ? '*Campo obrigatório' : null,
+                helperText: errors[3] ? '*Campo obrigatório' : null,
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: errors[2] ? Colors.red : Colors.green.shade200,
+                      color: errors[3] ? Colors.red : Colors.green.shade200,
                       width: 2.0),
                 ),
               ),
             ),
             SizedBox(height: 20,),
             TextField(
-              onChanged: (value) => {setInputError(value, 0)},
+              onChanged: (value) => {setInputError(value, 4)},
               controller: _avatarUrlController,
               decoration: InputDecoration(
                 labelText: 'Avatar url',
-                helperText: errors[3] ? '*Campo obrigatório' : null,
+                helperText: errors[4] ? '*Campo obrigatório' : null,
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      color: errors[3] ? Colors.red : Colors.green.shade200,
+                      color: errors[4] ? Colors.red : Colors.green.shade200,
                       width: 2.0),
                 ),
               ),

@@ -36,7 +36,7 @@ class _ManageDoctorsState extends State<ManageDoctors> {
           IconButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(
-                  AppRoutes.HOME,
+                  AppRoutes.CADASTRAR_PROFISSIONAIS,
                 );
               },
               icon: Icon(Icons.add)),

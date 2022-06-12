@@ -1,5 +1,5 @@
 class Doctor {
-  String id;
+  String? id;
   String name;
   String speciality;
   String address;
@@ -7,13 +7,15 @@ class Doctor {
   String? avatarUrl;
 
   Doctor(
-      {
-      required this.id,
+    {
+      this.id,
       required this.name,
       required this.speciality,
       required this.address,
       this.avatarUrl,
-      this.rating});
+      this.rating
+    }
+  );
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(

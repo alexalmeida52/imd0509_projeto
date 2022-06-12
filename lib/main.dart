@@ -4,6 +4,7 @@ import 'package:imd0509_projeto/controllers/consult_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/views/components/main_drawer.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
+import 'package:imd0509_projeto/views/screens/create_doctor.dart';
 import 'package:imd0509_projeto/views/screens/create_schedule.dart';
 import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/views/screens/login.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
           AppRoutes.LOGIN: (ctx) => Login(),
           AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
           AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
-          AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors()
+          AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors(),
+          AppRoutes.CADASTRAR_PROFISSIONAIS: (ctx) => CreateDoctor()
         },
         theme: ThemeData().copyWith(
             colorScheme: ThemeData()

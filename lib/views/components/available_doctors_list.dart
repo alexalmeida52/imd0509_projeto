@@ -176,7 +176,7 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                               final doctorsController = context
                                                   .read<DoctorController>();
 
-                                              final response = await doctorsController.remove(doctor.id);
+                                              final response = await doctorsController.remove(doctor.id ?? '');
 
                                               if (response.statusCode == 204) {
                                                 showSnackBar(context,

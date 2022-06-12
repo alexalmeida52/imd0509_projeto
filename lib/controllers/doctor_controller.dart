@@ -60,7 +60,7 @@ class DoctorController extends ChangeNotifier {
     print(doctor.name);
     final response = await http.put(
         Uri.parse('${Api.baseUrl}${Api.doctorsPath}/${doctor.id}'),
-            headers: <String, String>{
+        headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode({
@@ -82,6 +82,11 @@ class DoctorController extends ChangeNotifier {
   }
 
   Future<void> createDoctor(Doctor doctor) {
+    print('${doctor.name}');
+    print('${doctor.speciality}');
+    print('${doctor.address}');
+    print('${doctor.avatarUrl}');
+    print('${doctor.rating}');
     return Future.value();
   }
 }

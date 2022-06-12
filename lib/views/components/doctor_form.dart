@@ -18,12 +18,18 @@ class DoctorForm extends StatefulWidget {
 class _DoctorFormState extends State<DoctorForm> {
   final _nameController = TextEditingController();
   final _specialityController = TextEditingController();
-  List<bool> errors = [false, false];
+  final _addressController = TextEditingController();
+  final _avatarUrlController = TextEditingController();
+  final _ratingController = TextEditingController();
+  List<bool> errors = [false, false, false, false, false];
 
 
   _submitForm() async {
     final name = _nameController.text;
     final speciality = _specialityController.text;
+    final address = _addressController.text;
+    final avatarUrl = _avatarUrlController.text;
+    final rating = _ratingController.text;
 
     setState(() {
       if (name.isEmpty) {
@@ -39,18 +45,29 @@ class _DoctorFormState extends State<DoctorForm> {
       return;
     }
 
-    errors = [false, false];
+    errors = [false, false, false, false, false];
 
     final doctorController = context.read<DoctorController>();
 
-    final doctor = new Doctor(
-        name: name,
-        speciality: speciality,
-        address: 'Local',
-        id: widget.doctorEditing!.id,
-        avatarUrl: widget.doctorEditing!.avatarUrl,
-        rating: widget.doctorEditing!.rating
-    );
+    Doctor doctor; 
+    if(widget.doctorEditing != null) {
+      doctor = new Doctor(
+          name: name,
+          speciality: speciality,
+          address: 'Local',
+          id: widget.doctorEditing!.id,
+          avatarUrl: widget.doctorEditing!.avatarUrl,
+          rating: widget.doctorEditing!.rating
+      );
+    } else {
+      doctor = new Doctor(
+          name: name,
+          speciality: speciality,
+          address: address,
+          avatarUrl: avatarUrl,
+          // rating: int.parse(rating)
+      );
+    }
 
     await doctorController.saveDoctor(doctor);
     ScaffoldMessenger.of(context).showSnackBar(
@@ -95,7 +112,7 @@ class _DoctorFormState extends State<DoctorForm> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Column(children: <Widget>[
-            Row(
+            if (widget.doctorEditing != null) Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -142,7 +159,39 @@ class _DoctorFormState extends State<DoctorForm> {
               // inputFormatters: <TextInputFormatter>[
               //   FilteringTextInputFormatter.digitsOnly,
               // ], // Only numbers can be entered
-            )
+            ),
+            SizedBox(height: 20,),
+            TextField(
+              onChanged: (value) => {setInputError(value, 0)},
+              controller: _addressController,
+              decoration: InputDecoration(
+                labelText: 'Endereço',
+                helperText: errors[2] ? '*Campo obrigatório' : null,
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: errors[2] ? Colors.red : Colors.green.shade200,
+                      width: 2.0),
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            TextField(
+              onChanged: (value) => {setInputError(value, 0)},
+              controller: _avatarUrlController,
+              decoration: InputDecoration(
+                labelText: 'Avatar url',
+                helperText: errors[3] ? '*Campo obrigatório' : null,
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: errors[3] ? Colors.red : Colors.green.shade200,
+                      width: 2.0),
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            if (widget.doctorEditing == null) ElevatedButton(onPressed: _submitForm, child: Text('Cadastrar'))
           ]),
         ),
       ),

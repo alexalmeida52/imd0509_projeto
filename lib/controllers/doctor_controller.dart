@@ -11,7 +11,6 @@ class DoctorController extends ChangeNotifier {
   List<Doctor> _doctorsList = [];
 
   Future<List<Doctor>> fetchDoctorsList() async {
-    print('Fetch doctors\n${Api.baseUrl}${Api.doctorsPath}');
     final response =
         await http.get(Uri.parse('${Api.baseUrl}${Api.doctorsPath}'));
 
@@ -56,11 +55,6 @@ class DoctorController extends ChangeNotifier {
   }
 
   Future<void> updateDoctor(Doctor doctor) async {
-    print('Atualizando doctor');
-    print('name: ${doctor.name}');
-    print('last_name: ${doctor.last_name}');
-    print('avatar: ${doctor.avatarUrl}');
-    print('speciality: ${doctor.speciality}');
     final response = await http.put(
         Uri.parse('${Api.baseUrl}${Api.doctorsPath}/${doctor.id}'),
         headers: <String, String>{
@@ -74,7 +68,6 @@ class DoctorController extends ChangeNotifier {
         }));
 
     if (response.statusCode == 204) {
-      print('Atualizado doctor');
 
       int index = _doctorsList.indexWhere((p) => p.id == doctor.id);
 
@@ -87,11 +80,6 @@ class DoctorController extends ChangeNotifier {
   }
 
   Future<void> createDoctor(Doctor doctor) async {
-    print('${doctor.name}');
-    print('${doctor.speciality}');
-    print('${doctor.address}');
-    print('${doctor.avatarUrl}');
-    print('${doctor.rating}');
     
     final response = await http.post(
         Uri.parse('${Api.baseUrl}${Api.doctorsPath}'),
@@ -110,7 +98,6 @@ class DoctorController extends ChangeNotifier {
         }));
 
     if (response.statusCode == 204) {
-      print('Profissional cadastrado');
       _doctorsList.add(doctor);
       notifyListeners();
     }

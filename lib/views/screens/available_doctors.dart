@@ -39,10 +39,7 @@ class _AvailableDoctorsState extends State<AvailableDoctors> {
     final doctorController = Provider.of<DoctorController>(context, listen: false);
 
     Future<List<Doctor>> getDoctors() async {
-      print('Iniciando o fetch');
-      print('chamando o controller');
       await doctorController.fetchDoctorsList();
-      print('controller retornou');
       return _filteredListDoctors;
     }
 

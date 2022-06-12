@@ -96,7 +96,6 @@ class _DoctorFormState extends State<DoctorForm> {
   @override
   void initState() {
     if (widget.doctorEditing != null) {
-      print(widget.doctorEditing);
       setState(() {
         _nameController.text = widget.doctorEditing!.name;
         _lastNameController.text = widget.doctorEditing!.last_name;

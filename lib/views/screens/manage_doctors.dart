@@ -23,10 +23,7 @@ class _ManageDoctorsState extends State<ManageDoctors> {
         Provider.of<DoctorController>(context, listen: false);
 
     Future<List<Doctor>> getDoctors() async {
-      print('Iniciando o fetch');
-      print('chamando o controller');
       final response = await doctorController.fetchDoctorsList();
-      print('controller retornou');
       return response;
     }
 
@@ -49,7 +46,6 @@ class _ManageDoctorsState extends State<ManageDoctors> {
                   getDoctors(), // Uso de um future para esperar a consulta a api
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  print('sucesso!!!');
                   return Consumer<DoctorController>(
                       builder: (context, doctors, child) {
                     return AvailableDoctorsList(

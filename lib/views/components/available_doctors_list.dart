@@ -26,7 +26,6 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.filteredListDoctors.length);
     return Container(
         child: widget.filteredListDoctors.isEmpty
             ? Text('Nenhum profissional encontrado')

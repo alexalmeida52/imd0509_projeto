@@ -25,7 +25,6 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
   }
 
   _filterConsulta() {
-    //print(value);
     setState(() {
       tabSelected = 1;
       _filterListConsulta = _consutList
@@ -51,10 +50,7 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
     final consultsController = Provider.of<ConsultController>(context);
 
     Future<List<Consulta>> getConsults() async {
-      print('Iniciando o fetch');
-      print('chamando o controller');
       _filterListConsulta = await consultsController.fetchConsultList();
-      print('controller retornou');
       return _filterListConsulta;
     }
 

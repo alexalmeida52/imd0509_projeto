@@ -10,7 +10,6 @@ class ConsultController extends ChangeNotifier {
   List<Consulta> _consultaList = [];
 
   Future<List<Consulta>> fetchConsultList() async {
-    print('Fetch consults\n ${Api.baseUrl}${Api.consultPath}');
     final response =
         await http.get(Uri.parse('${Api.baseUrl}${Api.consultPath}'));
         

@@ -115,7 +115,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                   labelText: 'Sobrenome',
                 ),
                 textInputAction: TextInputAction.next,
-                onFieldSubmitted: (_) {
+                onFieldSubmitted: (_){
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
                 onSaved: (last_name) =>
@@ -159,7 +159,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                   labelText: 'Sexo: ',
                 ),
                 textInputAction: TextInputAction.next,
-                onFieldSubmitted: (_gender) {
+                onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
                 onSaved: (gender) => _formData['gender'] = gender ?? '',
@@ -227,7 +227,7 @@ class _PatientRegistrationState extends State<PatientRegistration> {
                   labelText: 'Senha',
                 ),
                 textInputAction: TextInputAction.next,
-                onFieldSubmitted: (_password) {
+                onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
                 onSaved: (password) => _formData['password'] = password ?? '',

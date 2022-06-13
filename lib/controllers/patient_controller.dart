@@ -12,10 +12,10 @@ class PatientController extends ChangeNotifier {
     print('Fetch Patients\n ${Api.baseUrl}${Api.patientsPath}');
     final response =
         await http.get(Uri.parse('${Api.baseUrl}${Api.patientsPath}'));
-        
+
     if (response.statusCode != 200) {
       return [];
-    } 
+    }
 
     final lista = jsonDecode(response.body).cast<Map<String, dynamic>>();
     return lista.map<Patient>((item) => Patient.fromJson(item)).toList();
@@ -27,5 +27,47 @@ class PatientController extends ChangeNotifier {
 
   void setPatient(List<Patient> PatientsList) {
     _patientsList = PatientsList;
+  }
+
+  Future<void> addPatient(Patient newPatient) {
+    print('adicionando');
+    final future = http.post(Uri.parse('${Api.baseUrl}/patients.json'),
+        body: jsonEncode({
+          'name': newPatient.name,
+          'last_name': newPatient.last_name,
+          'gender': newPatient.gender,
+          'email': newPatient.email,
+          'password': newPatient.password,
+          'birthday': newPatient.birthday,
+          'phone': newPatient.phone,
+        }));
+    return future.then((response) {
+      print('espera a requisição acontecer');
+      print(jsonDecode(response.body));
+      print(response.statusCode);
+      _patientsList.add(Patient(
+                    name: newPatient.name,
+          last_name: newPatient.last_name,
+          gender: newPatient.gender,
+          email: newPatient.email,
+          password: newPatient.password,
+          birthday: newPatient.birthday,
+          phone: newPatient.phone,));
+      notifyListeners();
+    });
+  }
+
+  Future<void> savePatient(Map<String, Object> data) {
+
+    final newPatient = Patient(
+      name: data['name'] as String,
+      last_name: data['last_name'] as String,
+      birthday: data['birthday'] as String,
+      gender: data['gender'] as String,
+      email: data['email'] as String,
+      phone: data['phone'] as String,
+      password: data['password'] as String,
+    );
+    return addPatient(newPatient);
   }
 }

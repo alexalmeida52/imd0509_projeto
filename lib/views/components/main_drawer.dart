@@ -46,11 +46,11 @@ class MainDrawer extends StatelessWidget {
                   .pushReplacementNamed(AppRoutes.HOME)),
           _createItem(Icons.account_circle_sharp, 'Profissionais',
               () => Navigator.of(context).pushReplacementNamed(AppRoutes.GERRENCIAR_PROFISSIONAIS)),
-          // _createItem(
-          //     Icons.edit,
-          //     'Gerenciar lugares',
-          //     () => Navigator.of(context)
-          //         .pushReplacementNamed(AppRoutes.SETTINGS)),
+          _createItem(
+              Icons.person,
+              'PERFIL',
+              () => Navigator.of(context)
+                  .pushReplacementNamed(AppRoutes.PERFIL)),
           // _createItem(
           //     Icons.settings,
           //     'Configurações',

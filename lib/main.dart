@@ -3,12 +3,14 @@ import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/controllers/patient_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/views/components/main_drawer.dart';
+import 'package:imd0509_projeto/views/components/patientPerfil.dart';
+import 'package:imd0509_projeto/views/components/patientregistration.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
 import 'package:imd0509_projeto/views/screens/create_schedule.dart';
 import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/views/screens/login.dart';
 import 'package:imd0509_projeto/views/screens/manage_doctors.dart';
-import 'package:imd0509_projeto/views/screens/patient_perfil.dart';
+import 'package:imd0509_projeto/views/screens/perfil.dart';
 import 'package:imd0509_projeto/views/screens/profile_doctor.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +42,9 @@ class MyApp extends StatelessWidget {
           AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
           AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
           AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors(),
-          AppRoutes.LISTA_PACIENTES: (ctx) => PatientPerfil()
+          AppRoutes.PERFIL: (ctx) => Perfil(),
+          AppRoutes.PATIENT_PERFIL: (ctx) => PatientPerfil(),
+          AppRoutes.PATIENT_REGISTRATION: (ctx) => PatientRegistration(),
         },
         theme: ThemeData().copyWith(
             colorScheme: ThemeData()
@@ -76,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     AvailableDoctors(),
     ConsultaMedica(),
-    PatientPerfil()
+    Perfil()
   ];
 
   void _onItemTapped(int index) {
@@ -92,7 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         return 'MINHAS CONSULTAS';
       default:
-        return 'PACIENTES';
+        return 'PERFIL';
     }
   }
 

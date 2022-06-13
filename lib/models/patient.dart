@@ -6,9 +6,9 @@ class Patient {
   String email;
   String phone;
   String password;
-  //String? avatarUrl;
+  bool? isFirstConnection;
 
-  Patient({required this.name, required this.last_name, required this.gender,required this.email, required this.birthday, required this.password, required this.phone});
+  Patient({required this.name, required this.last_name, required this.gender,required this.email, required this.birthday, required this.password, required this.phone, this.isFirstConnection = true});
   factory Patient.fromJson(Map<String, dynamic> json){
     return Patient( 
       name: json['name'],

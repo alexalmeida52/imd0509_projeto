@@ -1,9 +1,11 @@
-
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:imd0509_projeto/controllers/consult_controller.dart';
+import 'package:imd0509_projeto/models/consultas.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class CreateSchedule extends StatefulWidget {
   
@@ -12,9 +14,9 @@ class CreateSchedule extends StatefulWidget {
 }
 
 class _CreateScheduleState extends State<CreateSchedule> {
-  
   final now = DateTime.now();
   late BookingService mockBookingService;
+  Doctor? doctor = null;
 
   @override
   void initState() {
@@ -38,7 +40,8 @@ class _CreateScheduleState extends State<CreateSchedule> {
     await Future.delayed(const Duration(seconds: 1));
     converted.add(DateTimeRange(
         start: newBooking.bookingStart, end: newBooking.bookingEnd));
-    print('${newBooking.toJson()} has been uploaded');
+    Consulta consulta = new Consulta(data: newBooking.bookingStart, doctor: doctor!);
+    Provider.of<ConsultController>(context, listen: false).addConsult(consulta);
   }
 
   List<DateTimeRange> converted = [];
@@ -46,7 +49,7 @@ class _CreateScheduleState extends State<CreateSchedule> {
   List<DateTimeRange> convertStreamResultMock({required dynamic streamResult}) {
     ///here you can parse the streamresult and convert to [List<DateTimeRange>]
     DateTime first = now;
-    DateTime second = now.add(Duration(minutes: 55,hours: 2));
+    DateTime second = now.add(Duration(minutes: 55, hours: 2));
     DateTime third = now.subtract(Duration(minutes: 240));
     DateTime fourth = now.subtract(Duration(minutes: 500));
     converted
@@ -63,10 +66,10 @@ class _CreateScheduleState extends State<CreateSchedule> {
   @override
   Widget build(BuildContext context) {
     ScrollPhysics physics = const BouncingScrollPhysics();
-    final Doctor doctor = ModalRoute.of(context)?.settings.arguments as Doctor;
+    doctor = ModalRoute.of(context)?.settings.arguments as Doctor;
     return Scaffold(
-      appBar: AppBar(title: Text('Agendar consulta ${doctor.name}')),
-      body: Container(       
+      appBar: AppBar(title: Text('Agendar consulta ${doctor!.name}')),
+      body: Container(
         padding: const EdgeInsets.all(20),
         child: Column(children: [
           Text(

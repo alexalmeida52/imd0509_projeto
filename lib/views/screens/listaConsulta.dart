@@ -40,17 +40,19 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
     final consultsController = Provider.of<ConsultController>(context);
 
     Future<List<Consulta>> getConsults() async {
-      if(tabSelected == 1) {
+      print('Buscando consultas');
+      if (tabSelected == 1) {
         final temp = await consultsController.fetchConsultList();
-        _filterListConsulta = temp.where((consulta) => consulta.data.compareTo(DateTime.now()) < 0)
-          .toList();
+        _filterListConsulta = temp
+            .where((consulta) => consulta.data.compareTo(DateTime.now()) < 0)
+            .toList();
         return _filterListConsulta;
       } else {
         final temp = await consultsController.fetchConsultList();
-        _filterListConsulta = temp.where((consulta) => consulta.data.compareTo(DateTime.now()) > 0)
-          .toList();
+        _filterListConsulta = temp
+            .where((consulta) => consulta.data.compareTo(DateTime.now()) > 0)
+            .toList();
         return _filterListConsulta;
-        
       }
     }
 

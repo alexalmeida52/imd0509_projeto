@@ -67,11 +67,11 @@ class _ListaConsultaState extends State<ListaConsulta> {
                                           fontWeight: FontWeight.bold, fontSize: 17
                                         ),
                                         ),
-                                      Text(consulta.speciality),
-                                      Text(consulta.address),
+                                      Text(consulta.speciality ?? 'Médico'),
+                                      Text(consulta.address ?? 'Local'),
                                       Text(DateFormat("dd/MM/yyyy").format(consulta.data)),
                                       Text(
-                                        'R\$' + consulta.valor.toStringAsFixed(2).replaceAll('.', ','),
+                                        'R\$ ${consulta.valor != null ? consulta.valor!.toStringAsFixed(2).replaceAll('.', ',') : 'R\$ 0,00'}',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold
                                         ),
@@ -86,7 +86,7 @@ class _ListaConsultaState extends State<ListaConsulta> {
                                padding: const EdgeInsets.all(10),
                                alignment: Alignment.centerRight,
                                child: Text(
-                                 consulta.status,
+                                 consulta.status ?? 'Ativo',
                                 overflow: TextOverflow.fade,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,

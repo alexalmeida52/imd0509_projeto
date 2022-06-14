@@ -1,24 +1,24 @@
 import 'package:imd0509_projeto/models/doctor.dart';
 
 class Consulta {
-  String name;
-  String speciality;
-  String address;
+  String? name;
+  String? speciality;
+  String? address;
   int? rating;
   String? avatarUrl;
   DateTime data;
-  double valor;
-  String status;
+  double? valor;
+  String? status;
   Doctor doctor;
 
   Consulta({
-    required this.name,
-    required this.speciality,
-    required this.address,
+    this.name,
+    this.speciality,
+    this.address,
     this.avatarUrl,
     required this.data,
-    required this.valor,
-    required this.status,
+    this.valor,
+    this.status,
     this.rating,
     required this.doctor
   });

@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
+<<<<<<< HEAD
 import 'package:imd0509_projeto/controllers/consult_controller.dart';
+=======
+import 'package:imd0509_projeto/controllers/patient_controller.dart';
+>>>>>>> add_patient
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/views/components/main_drawer.dart';
+import 'package:imd0509_projeto/views/components/patientPerfil.dart';
+import 'package:imd0509_projeto/views/components/patientregistration.dart';
 import 'package:imd0509_projeto/views/screens/available_doctors.dart';
 import 'package:imd0509_projeto/views/screens/create_doctor.dart';
 import 'package:imd0509_projeto/views/screens/create_schedule.dart';
 import 'package:imd0509_projeto/views/screens/listaConsulta.dart';
 import 'package:imd0509_projeto/views/screens/login.dart';
 import 'package:imd0509_projeto/views/screens/manage_doctors.dart';
+import 'package:imd0509_projeto/views/screens/perfil.dart';
 import 'package:imd0509_projeto/views/screens/profile_doctor.dart';
 import 'package:provider/provider.dart';
 
@@ -25,12 +32,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+<<<<<<< HEAD
         ChangeNotifierProvider(
           create: (context) => DoctorController(),
         ),
         ChangeNotifierProvider(
           create: (context) => ConsultController(),
         ),
+=======
+        ChangeNotifierProvider(create: (context) => DoctorController()),
+        ChangeNotifierProvider(create: (context) => PatientController())
+>>>>>>> add_patient
       ],
       child: MaterialApp(
         title: 'myHealth',
@@ -44,7 +56,13 @@ class MyApp extends StatelessWidget {
           AppRoutes.PROFILE_DOCTOR: (ctx) => ProfileDoctor(),
           AppRoutes.LISTA_CONSULTA: (ctx) => ConsultaMedica(),
           AppRoutes.GERRENCIAR_PROFISSIONAIS: (ctx) => ManageDoctors(),
+<<<<<<< HEAD
           AppRoutes.CADASTRAR_PROFISSIONAIS: (ctx) => CreateDoctor()
+=======
+          AppRoutes.PERFIL: (ctx) => Perfil(),
+          AppRoutes.PATIENT_PERFIL: (ctx) => PatientPerfil(),
+          AppRoutes.PATIENT_REGISTRATION: (ctx) => PatientRegistration(),
+>>>>>>> add_patient
         },
         theme: ThemeData().copyWith(
             colorScheme: ThemeData()
@@ -80,10 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     AvailableDoctors(),
     ConsultaMedica(),
-    Text(
-      'Agendar',
-      style: optionStyle,
-    ),
+    Perfil()
   ];
 
   void _onItemTapped(int index) {
@@ -99,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         return 'MINHAS CONSULTAS';
       default:
-        return 'DESCONHECIDO';
+        return 'PERFIL';
     }
   }
 

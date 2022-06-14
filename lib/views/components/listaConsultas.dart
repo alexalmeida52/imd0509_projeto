@@ -44,49 +44,50 @@ class _ListaConsultaState extends State<ListaConsulta> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                                  width: 80.0,
-                                  height: 80.0,
-                                  decoration: new BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: new DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: new AssetImage(
-                                              consulta.avatarUrl != null 
-                                              ? 'assets/${consulta.avatarUrl!}' 
-                                              : 'assets/user_default.png'
+                            Row(
+                              children: [
+                                Container(
+                                      width: 80.0,
+                                      height: 80.0,
+                                      decoration: new BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: new DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: new NetworkImage(consulta.avatarUrl ?? 'https://cdn-icons-png.flaticon.com/512/219/219986.png')
                                           )
-                                      )
-                                  )),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    consulta.name,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 17
-                                    ),
-                                    ),
-                                  Text(consulta.speciality),
-                                  Text(consulta.address),
-                                  Text(DateFormat("dd/MM/yyyy").format(consulta.data)),
-                                  Text(
-                                    'R\$' + consulta.valor.toStringAsFixed(2).replaceAll('.', ','),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold
-                                    ),
-                                    )
+                                      )),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${consulta.doctor.name} ${consulta.doctor.last_name}',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold, fontSize: 17
+                                        ),
+                                        ),
+                                      Text(consulta.speciality),
+                                      Text(consulta.address),
+                                      Text(DateFormat("dd/MM/yyyy").format(consulta.data)),
+                                      Text(
+                                        'R\$' + consulta.valor.toStringAsFixed(2).replaceAll('.', ','),
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                        )
 
-                                ],
-                              ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                              Container(
                                padding: const EdgeInsets.all(10),
                                alignment: Alignment.centerRight,
                                child: Text(
                                  consulta.status,
+                                overflow: TextOverflow.fade,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     

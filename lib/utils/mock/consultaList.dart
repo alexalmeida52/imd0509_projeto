@@ -1,8 +1,11 @@
+import 'package:imd0509_projeto/utils/mock/doctorsList.dart';
+
 import '../../models/consultas.dart';
 
 final List<Consulta> consultaListMocked = [
   new Consulta(
     name: 'Dr. José Alex', 
+    doctor: doctorsListMocked[0],
     speciality: 'Cardiologista', 
     address: 'myClinic, Lagoa Nova, Natal',
     avatarUrl: 'alex.jpg',
@@ -11,6 +14,7 @@ final List<Consulta> consultaListMocked = [
     status: 'Confirmado'
   ), 
   new Consulta(
+   doctor: doctorsListMocked[0],
    name: 'Dr. Elias Anderson', 
    speciality: 'Urologista', 
    address: 'myClinic, Lagoa Nova, Natal',
@@ -21,6 +25,7 @@ final List<Consulta> consultaListMocked = [
   ), 
   new Consulta(
     name: 'Dr. Karla Moura', 
+    doctor: doctorsListMocked[0],
     speciality: 'Nutricionista', 
     address: 'myClinic, Lagoa Nova, Natal',
     avatarUrl: 'karla.jpg',
@@ -30,6 +35,7 @@ final List<Consulta> consultaListMocked = [
   ),  
   new Consulta(
     name: 'Dr. Fabricio Cruz', 
+    doctor: doctorsListMocked[0],
     speciality: 'Dentista', 
     address: 'myClinic, Lagoa Nova, Natal',
     avatarUrl: 'fabricio.jpg',
@@ -39,6 +45,7 @@ final List<Consulta> consultaListMocked = [
   ),   
   new Consulta(
     name: 'Dr. Victor Pinheiro', 
+    doctor: doctorsListMocked[0],
     speciality: 'Terapia', 
     address: 'myClinic, Lagoa Nova, Natal',
     avatarUrl: 'victor.jpg',
@@ -48,6 +55,7 @@ final List<Consulta> consultaListMocked = [
   ),   
   new Consulta(
     name:'Dr. Leonardo Mauricio', 
+    doctor: doctorsListMocked[0],
     speciality: 'Neurologista', 
     address: 'myClinic, Lagoa Nova, Natal',
     avatarUrl: 'leo.jpg',

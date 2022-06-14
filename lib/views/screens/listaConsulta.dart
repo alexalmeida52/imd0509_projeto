@@ -10,48 +10,48 @@ import '../../utils/mock/consultaList.dart';
 class ConsultaMedica extends StatefulWidget {
   @override
   State<ConsultaMedica> createState() => _ConsultaMedicaState();
-
 }
 
 class _ConsultaMedicaState extends State<ConsultaMedica> {
-  List<Consulta> _consutList = consultaListMocked;
+  List<Consulta> _consutList = [];
   List<Consulta> _filterListConsulta = [];
   int tabSelected = 2;
 
   initState() {
     // at the beginning, all users are shown
-    _filterConsultaFuturas(); 
+    _filterConsultaFuturas();
     super.initState();
   }
 
   _filterConsulta() {
     setState(() {
       tabSelected = 1;
-      _filterListConsulta = _consutList
-          .where((consulta) =>
-              consulta.data.compareTo(DateTime.now()) < 0)
-          .toList();
     });
   }
 
   _filterConsultaFuturas() {
     setState(() {
       tabSelected = 2;
-      _filterListConsulta = _consutList
-          .where((consulta) =>
-              consulta.data.compareTo(DateTime.now()) > 0)
-          .toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     final consultsController = Provider.of<ConsultController>(context);
 
     Future<List<Consulta>> getConsults() async {
-      _filterListConsulta = await consultsController.fetchConsultList();
-      return _filterListConsulta;
+      if(tabSelected == 1) {
+        final temp = await consultsController.fetchConsultList();
+        _filterListConsulta = temp.where((consulta) => consulta.data.compareTo(DateTime.now()) < 0)
+          .toList();
+        return _filterListConsulta;
+      } else {
+        final temp = await consultsController.fetchConsultList();
+        _filterListConsulta = temp.where((consulta) => consulta.data.compareTo(DateTime.now()) > 0)
+          .toList();
+        return _filterListConsulta;
+        
+      }
     }
 
     return Container(
@@ -73,8 +73,8 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
                       onPressed: _filterConsulta,
                       child: Text('PASSADAS'),
                       style: ElevatedButton.styleFrom(
-                          primary:  Colors.white,
-                          onPrimary:  Colors.greenAccent,
+                          primary: Colors.white,
+                          onPrimary: Colors.greenAccent,
                           side: tabSelected == 1
                               ? BorderSide(
                                   width: 3.0, color: Colors.greenAccent)
@@ -90,7 +90,7 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
                       onPressed: _filterConsultaFuturas,
                       child: Text('FUTURAS'),
                       style: ElevatedButton.styleFrom(
-                          primary:  Colors.white,
+                          primary: Colors.white,
                           onPrimary: Colors.greenAccent,
                           side: tabSelected == 2
                               ? BorderSide(
@@ -118,9 +118,20 @@ class _ConsultaMedicaState extends State<ConsultaMedica> {
                 future:
                     getConsults(), // Uso de um future para esperar a consulta a api
                 builder: (context, snapshot) {
-                  return ListaConsulta(filteredListConsults: _filterListConsulta);
+                  if (snapshot.hasData) {
+                    return ListaConsulta(
+                        filteredListConsults: _filterListConsulta);
+                  } else if (snapshot.hasError) {
+                    print(snapshot.error);
+                    return Text('Erro ao buscar dados');
+                  } else {
+                    return Expanded(
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
                 })
-            
           ],
         ),
       ),

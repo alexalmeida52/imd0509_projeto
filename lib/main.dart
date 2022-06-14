@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ConsultController(),
         ),
-        ChangeNotifierProvider(create: (context) => DoctorController()),
         ChangeNotifierProvider(create: (context) => PatientController())
       ],
       child: MaterialApp(

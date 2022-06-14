@@ -73,7 +73,6 @@ class _ManageDoctorsState extends State<ManageDoctors> {
                   getDoctors(), // Uso de um future para esperar a consulta a api
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-<<<<<<< HEAD
                   return Consumer<DoctorController>(
                       builder: (context, doctors, child) {
                     return AvailableDoctorsList(
@@ -89,13 +88,6 @@ class _ManageDoctorsState extends State<ManageDoctors> {
                       child: CircularProgressIndicator(),
                     ),
                   );
-=======
-                  print('sucesso!!!');
-                  return AvailableDoctorsList(
-                      filteredListDoctors: doctorList, isManagement: true);
-                } else {
-                  return Text('Erro ao buscar dados');
->>>>>>> add_patient
                 }
               }),
         ],

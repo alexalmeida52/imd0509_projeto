@@ -7,11 +7,16 @@ import 'package:imd0509_projeto/models/patient.dart';
 import 'package:provider/provider.dart';
 
 class PatientRegistration extends StatefulWidget {
+  // final Patient? patientEditing;
+  // final int? index;
+  // PatientRegistration(this.patientEditing, this.index);
   @override
   State<PatientRegistration> createState() => _PatientRegistrationState();
 }
 
 class _PatientRegistrationState extends State<PatientRegistration> {
+  
+
   final _priceFocus = FocusNode();
   final _emailFocus = FocusNode();
 
@@ -63,12 +68,13 @@ class _PatientRegistrationState extends State<PatientRegistration> {
       context,
       listen: false,
     ).savePatient(_formData).then((value) {
-      Navigator.of(context).pop();
+      Navigator.pop(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro Perfil'),

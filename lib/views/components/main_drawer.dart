@@ -48,9 +48,9 @@ class MainDrawer extends StatelessWidget {
               () => Navigator.of(context).pushReplacementNamed(AppRoutes.GERRENCIAR_PROFISSIONAIS)),
           _createItem(
               Icons.person,
-              'PERFIL',
+              'Cadastrar Paciente',
               () => Navigator.of(context)
-                  .pushReplacementNamed(AppRoutes.PERFIL)),
+                  .pushNamed(AppRoutes.PATIENT_REGISTRATION)),
           // _createItem(
           //     Icons.settings,
           //     'Configurações',

@@ -1,4 +1,5 @@
 class Patient {
+  String? id;
   String name;
   String last_name;
   String gender;
@@ -8,9 +9,10 @@ class Patient {
   String password;
   bool? isFirstConnection;
 
-  Patient({required this.name, required this.last_name, required this.gender,required this.email, required this.birthday, required this.password, required this.phone, this.isFirstConnection = true});
+  Patient({this.id, required this.name, required this.last_name, required this.gender,required this.email, required this.birthday, required this.password, required this.phone, this.isFirstConnection = true});
   factory Patient.fromJson(Map<String, dynamic> json){
     return Patient( 
+      id: json['_id'],
       name: json['name'],
       last_name: json['last_name'],
       gender: json['gender'],

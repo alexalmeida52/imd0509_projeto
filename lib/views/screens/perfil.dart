@@ -46,7 +46,7 @@ class _PerfilState extends State<Perfil> {
       color: Color.fromRGBO(242, 242, 242, 1),
       child: Padding(
         padding: const EdgeInsets.only(top: 18.0, left: 18.0, right: 18.0),
-        child:  _patient[0].isFirstConnection == true ? PatientRegistration() : PatientPerfil() 
+        child: PatientPerfil()
       ),
     );
   }

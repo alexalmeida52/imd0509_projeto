@@ -31,7 +31,10 @@ class PatientController extends ChangeNotifier {
 
   Future<void> addPatient(Patient newPatient) {
     print('adicionando');
-    final future = http.post(Uri.parse('${Api.baseUrl}/patients.json'),
+    final future = http.post(Uri.parse('${Api.baseUrl}/patients'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
         body: jsonEncode({
           'name': newPatient.name,
           'last_name': newPatient.last_name,
@@ -46,19 +49,19 @@ class PatientController extends ChangeNotifier {
       print(jsonDecode(response.body));
       print(response.statusCode);
       _patientsList.add(Patient(
-                    name: newPatient.name,
-          last_name: newPatient.last_name,
-          gender: newPatient.gender,
-          email: newPatient.email,
-          password: newPatient.password,
-          birthday: newPatient.birthday,
-          phone: newPatient.phone,));
+        name: newPatient.name,
+        last_name: newPatient.last_name,
+        gender: newPatient.gender,
+        email: newPatient.email,
+        password: newPatient.password,
+        birthday: newPatient.birthday,
+        phone: newPatient.phone,
+      ));
       notifyListeners();
     });
   }
 
   Future<void> savePatient(Map<String, Object> data) {
-
     final newPatient = Patient(
       name: data['name'] as String,
       last_name: data['last_name'] as String,

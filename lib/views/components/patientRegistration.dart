@@ -64,12 +64,12 @@ class _PatientRegistrationState extends State<PatientRegistration> {
 
     _formKey.currentState?.save();
 
-    Provider.of<PatientController>(
-      context,
-      listen: false,
-    ).savePatient(_formData).then((value) {
-      Navigator.pop(context);
-    });
+    // Provider.of<PatientController>(
+    //   context,
+    //   listen: false,
+    // ).savePatient(_formData).then((value) {
+    //   Navigator.pop(context);
+    // });
   }
 
   @override

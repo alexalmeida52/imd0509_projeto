@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
-import 'package:imd0509_projeto/controllers/patient_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
-import 'package:imd0509_projeto/utils/mock/doctorsList.dart';
 import 'package:imd0509_projeto/views/components/main_drawer.dart';
-import 'package:imd0509_projeto/views/screens/available_doctors.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/app_routes.dart';
@@ -17,33 +13,6 @@ class ManageDoctors extends StatefulWidget {
 }
 
 class _ManageDoctorsState extends State<ManageDoctors> {
-
-  final _priceFocus = FocusNode();
-  final _descriptionFocus = FocusNode();
-
-  final _imageUrlFocus = FocusNode();
-  final _imageUrlController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-  final _formData = Map<String, Object>();
-  
-  void _submitForm() {
-    final isValid = _formKey.currentState?.validate() ?? false;
-
-    if (!isValid) {
-      return;
-    }
-
-    _formKey.currentState?.save();
-
-    Provider.of<PatientController>(
-      context,
-      listen: false,
-    ).savePatient(_formData).then((value) {
-      Navigator.of(context).pop();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final doctorController =

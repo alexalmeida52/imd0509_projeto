@@ -1,12 +1,66 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:imd0509_projeto/utils/app_routes.dart';
 import 'package:imd0509_projeto/views/components/info_patient_profile_component.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspaths;
 
 import '../../controllers/patient_controller.dart';
+import 'image_input.component.dart';
 
-class PatientProfileComponent extends StatelessWidget {
+class PatientProfileComponent extends StatefulWidget {
+
+  @override
+  State<PatientProfileComponent> createState() => _PatientProfileComponentState();
+}
+
+class _PatientProfileComponentState extends State<PatientProfileComponent> {
+  File? _storedImage;
+
+  File? _image;
+
+  _takePicture() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile imageFile = await _picker.pickImage(
+      source: ImageSource.camera,
+      maxWidth: 600,
+    ) as XFile;
+
+    if (imageFile == null) return;
+
+    setState(() {
+      _storedImage = File(imageFile.path);
+      _image = null;
+    });
+
+    //pegar pasta que posso salvar documentos
+    final appDir = await syspaths.getApplicationDocumentsDirectory();
+    String fileName = path.basename(_storedImage!.path);
+    final savedImage = await _storedImage!.copy(
+      '${appDir.path}/$fileName',
+    );
+    // widget.onSelectImage(savedImage);
+  }
+
+  _getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile imageFile =
+        await _picker.pickImage(source: ImageSource.gallery) as XFile;
+
+    if (imageFile == null) return;
+
+    setState(() {
+      _image = File(imageFile.path);
+      _storedImage = null;
+    });
+
+    // widget.onSelectImage(_image);
+  }
+
   @override
   Widget build(BuildContext context) {
     // final patient = Provider.of<PatientController>(context, listen: false);
@@ -44,10 +98,13 @@ class PatientProfileComponent extends StatelessWidget {
                                   Positioned(
                                       bottom: 0,
                                       right: 0,
-                                      child: Icon(
-                                        Icons.add_a_photo,
-                                        size: 25,
-                                        color: Colors.green[200],
+                                      child: InkWell(
+                                        onTap: _takePicture,
+                                        child: Icon(
+                                          Icons.add_a_photo,
+                                          size: 25,
+                                          color: Colors.green[200],
+                                        ),
                                       )),
                                   Container(
                                       width: 180.0,

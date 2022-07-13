@@ -13,53 +13,15 @@ import '../../controllers/patient_controller.dart';
 import 'image_input.component.dart';
 
 class PatientProfileComponent extends StatefulWidget {
-
   @override
-  State<PatientProfileComponent> createState() => _PatientProfileComponentState();
+  State<PatientProfileComponent> createState() =>
+      _PatientProfileComponentState();
 }
 
 class _PatientProfileComponentState extends State<PatientProfileComponent> {
   File? _storedImage;
 
   File? _image;
-
-  _takePicture() async {
-    final ImagePicker _picker = ImagePicker();
-    XFile imageFile = await _picker.pickImage(
-      source: ImageSource.camera,
-      maxWidth: 600,
-    ) as XFile;
-
-    if (imageFile == null) return;
-
-    setState(() {
-      _storedImage = File(imageFile.path);
-      _image = null;
-    });
-
-    //pegar pasta que posso salvar documentos
-    final appDir = await syspaths.getApplicationDocumentsDirectory();
-    String fileName = path.basename(_storedImage!.path);
-    final savedImage = await _storedImage!.copy(
-      '${appDir.path}/$fileName',
-    );
-    // widget.onSelectImage(savedImage);
-  }
-
-  _getImage() async {
-    final ImagePicker _picker = ImagePicker();
-    XFile imageFile =
-        await _picker.pickImage(source: ImageSource.gallery) as XFile;
-
-    if (imageFile == null) return;
-
-    setState(() {
-      _image = File(imageFile.path);
-      _storedImage = null;
-    });
-
-    // widget.onSelectImage(_image);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,35 +55,13 @@ class _PatientProfileComponentState extends State<PatientProfileComponent> {
                               SizedBox(
                                 height: 18,
                               ),
-                              Stack(
-                                children: [
-                                  Positioned(
-                                      bottom: 0,
-                                      right: 0,
-                                      child: InkWell(
-                                        onTap: _takePicture,
-                                        child: Icon(
-                                          Icons.add_a_photo,
-                                          size: 25,
-                                          color: Colors.green[200],
-                                        ),
-                                      )),
-                                  Container(
-                                      width: 180.0,
-                                      height: 180.0,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 5,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary),
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                              fit: BoxFit.fill,
-                                              image: NetworkImage(
-                                                  'https://cdn-icons-png.flaticon.com/512/219/219986.png')))),
-                                ],
-                              ),
+                              ImageInput((String url) {
+                                print('Atualizando avatar');
+                                Provider.of<PatientController>(context,
+                                        listen: false)
+                                    .updateField(controller.patient!.id!,
+                                        'avatarUrl', url);
+                              }, controller.patient!.avatarUrl)
                             ],
                           ),
                           SizedBox(height: 28),
@@ -139,7 +79,8 @@ class _PatientProfileComponentState extends State<PatientProfileComponent> {
                                 "patientId": controller.patient!.id
                               };
                               Navigator.pushNamed(
-                                  context, AppRoutes.EDIT_PATIENT_FIELD, arguments: arg);
+                                  context, AppRoutes.EDIT_PATIENT_FIELD,
+                                  arguments: arg);
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Colors.green[200],
@@ -161,7 +102,8 @@ class _PatientProfileComponentState extends State<PatientProfileComponent> {
                                 "patientId": controller.patient!.id
                               };
                               Navigator.pushNamed(
-                                  context, AppRoutes.EDIT_PATIENT_FIELD, arguments: arg);
+                                  context, AppRoutes.EDIT_PATIENT_FIELD,
+                                  arguments: arg);
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Colors.green[200],
@@ -183,7 +125,8 @@ class _PatientProfileComponentState extends State<PatientProfileComponent> {
                                 "patientId": controller.patient!.id
                               };
                               Navigator.pushNamed(
-                                  context, AppRoutes.EDIT_PATIENT_FIELD, arguments: arg);
+                                  context, AppRoutes.EDIT_PATIENT_FIELD,
+                                  arguments: arg);
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Colors.green[200],
@@ -204,7 +147,8 @@ class _PatientProfileComponentState extends State<PatientProfileComponent> {
                                 "patientId": controller.patient!.id
                               };
                               Navigator.pushNamed(
-                                  context, AppRoutes.EDIT_PATIENT_FIELD, arguments: arg);
+                                  context, AppRoutes.EDIT_PATIENT_FIELD,
+                                  arguments: arg);
                             },
                             style: ElevatedButton.styleFrom(
                               primary: Colors.green[200],

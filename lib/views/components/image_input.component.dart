@@ -35,17 +35,25 @@ class _ImageInputState extends State<ImageInput> {
     String url = await UploadImage.upload(File(imageFile.path));
     setState(() {
       _storedImage = File(imageFile.path);
-      _image = null;
     });
 
     print('uploaded image \n $url');
 
-    //pegar pasta que posso salvar documentos
-    final appDir = await syspaths.getApplicationDocumentsDirectory();
-    String fileName = path.basename(_storedImage!.path);
-    final savedImage = await _storedImage!.copy(
-      '${appDir.path}/$fileName',
-    );
+    widget.onSelectImage(url);
+  }
+
+   _getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile imageFile =
+        await _picker.pickImage(source: ImageSource.gallery) as XFile;
+
+    if (imageFile == null) return;
+
+    String url = await UploadImage.upload(File(imageFile.path));
+    setState(() {
+      _storedImage = File(imageFile.path);
+    });
+
     widget.onSelectImage(url);
   }
 
@@ -54,16 +62,28 @@ class _ImageInputState extends State<ImageInput> {
     return Stack(
       children: [
         Positioned(
-            bottom: 0,
-            right: 0,
-            child: InkWell(
-              onTap: _takePicture,
-              child: Icon(
-                Icons.add_a_photo,
-                size: 25,
-                color: Colors.green[200],
-              ),
-            )),
+          bottom: 0,
+          left: 0,
+          child: InkWell(
+            onTap: _getImage,
+            child: Icon(
+              Icons.file_upload_outlined,
+              size: 25,
+              color: Colors.green[200],
+            ),
+          )
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: InkWell(
+            onTap: _takePicture,
+            child: Icon(
+              Icons.add_a_photo,
+              size: 25,
+              color: Colors.green[200],
+            ),
+        )),
         Container(
           width: 180.0,
           height: 180.0,

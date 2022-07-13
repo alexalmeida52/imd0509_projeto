@@ -110,10 +110,10 @@ class _DoctorFormState extends State<DoctorForm> {
             widget.doctorEditing!.speciality.toString();
       });
     }
-
+    print('url $avatarUrl');
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -140,10 +140,9 @@ class _DoctorFormState extends State<DoctorForm> {
                 ],
               ),
             SizedBox(height: 20),
-            ImageInput((String url){ 
-                avatarUrl = url;
-              }
-            ),
+            ImageInput((String url) {
+              avatarUrl = url;
+            }, avatarUrl),
             SizedBox(height: 20),
             TextField(
               onChanged: (value) => {setInputError(value, 0)},

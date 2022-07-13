@@ -9,14 +9,16 @@ import '../../controllers/upload_image_controller.dart';
 
 class ImageInput extends StatefulWidget {
   final Function onSelectImage;
+  final String? avatarUrlOld;
 
-  ImageInput(this.onSelectImage);
+  ImageInput(this.onSelectImage, this.avatarUrlOld);
 
   @override
   _ImageInputState createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
+  String? avatarUrl;
   //Capturando Imagem
   File? _storedImage;
   File? _image;
@@ -30,12 +32,13 @@ class _ImageInputState extends State<ImageInput> {
 
     if (imageFile == null) return;
 
+    String url = await UploadImage.upload(File(imageFile.path));
     setState(() {
       _storedImage = File(imageFile.path);
       _image = null;
     });
 
-    String url = await UploadImage.upload(_storedImage!);
+    print('uploaded image \n $url');
 
     //pegar pasta que posso salvar documentos
     final appDir = await syspaths.getApplicationDocumentsDirectory();
@@ -70,7 +73,9 @@ class _ImageInputState extends State<ImageInput> {
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: _storedImage == null
-                    ? AssetImage('assets/user_default.png') as ImageProvider
+                    ? widget.avatarUrlOld != null
+                        ? NetworkImage(widget.avatarUrlOld!) as ImageProvider
+                        : AssetImage('assets/user_default.png')
                     : FileImage(_storedImage!),
                 fit: BoxFit.cover,
               )),

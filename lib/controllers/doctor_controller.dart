@@ -97,7 +97,9 @@ class DoctorController extends ChangeNotifier {
           "price": 300.0
         }));
 
-    if (response.statusCode == 204) {
+    if (response.statusCode == 200) {
+      print('_id: ${jsonDecode(response.body)['_id']}');
+      doctor.id = jsonDecode(response.body)['_id'];
       _doctorsList.add(doctor);
       notifyListeners();
     }

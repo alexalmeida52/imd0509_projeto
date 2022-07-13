@@ -77,6 +77,7 @@ flutter:
     - assets/lucio.jpg
     - assets/caio.jpg
     - assets/felipe.jpg
+    - assets/user_default.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

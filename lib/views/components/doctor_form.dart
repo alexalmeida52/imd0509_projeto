@@ -1,15 +1,21 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
 import 'package:imd0509_projeto/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:imd0509_projeto/views/components/image_input.component.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspaths;
 
 class DoctorForm extends StatefulWidget {
   final Doctor? doctorEditing;
   final int? index;
-    DoctorForm(this.doctorEditing, this.index);
+  DoctorForm(this.doctorEditing, this.index);
 
   @override
   State<DoctorForm> createState() => _DoctorFormState();
@@ -20,17 +26,15 @@ class _DoctorFormState extends State<DoctorForm> {
   final _lastNameController = TextEditingController();
   final _specialityController = TextEditingController();
   final _addressController = TextEditingController();
-  final _avatarUrlController = TextEditingController();
   final _ratingController = TextEditingController();
   List<bool> errors = [false, false, false, false, false];
-
+  String? avatarUrl;
 
   _submitForm() async {
     final name = _nameController.text;
     final lastName = _lastNameController.text;
     final speciality = _specialityController.text;
     final address = _addressController.text;
-    final avatarUrl = _avatarUrlController.text;
     final rating = _ratingController.text;
 
     setState(() {
@@ -42,8 +46,7 @@ class _DoctorFormState extends State<DoctorForm> {
       }
     });
 
-    if (name.isEmpty ||
-        speciality.isEmpty) {
+    if (name.isEmpty || speciality.isEmpty) {
       return;
     }
 
@@ -51,8 +54,8 @@ class _DoctorFormState extends State<DoctorForm> {
 
     final doctorController = context.read<DoctorController>();
 
-    Doctor doctor; 
-    if(widget.doctorEditing != null) {
+    Doctor doctor;
+    if (widget.doctorEditing != null) {
       doctor = new Doctor(
           name: name,
           last_name: lastName,
@@ -60,16 +63,15 @@ class _DoctorFormState extends State<DoctorForm> {
           address: address,
           id: widget.doctorEditing!.id,
           avatarUrl: avatarUrl,
-          rating: widget.doctorEditing!.rating
-      );
+          rating: widget.doctorEditing!.rating);
     } else {
       doctor = new Doctor(
-          name: name,
-          last_name: lastName,
-          speciality: speciality,
-          address: address,
-          avatarUrl: avatarUrl,
-          // rating: int.parse(rating)
+        name: name,
+        last_name: lastName,
+        speciality: speciality,
+        address: address,
+        avatarUrl: avatarUrl,
+        // rating: int.parse(rating)
       );
     }
 
@@ -100,15 +102,18 @@ class _DoctorFormState extends State<DoctorForm> {
         _nameController.text = widget.doctorEditing!.name;
         _lastNameController.text = widget.doctorEditing!.last_name;
         _addressController.text = widget.doctorEditing!.address;
-        _ratingController.text = widget.doctorEditing!.rating != null ? (widget.doctorEditing!.rating).toString() : '0';
-        _avatarUrlController.text = widget.doctorEditing!.avatarUrl ?? '';
-        _specialityController.text = widget.doctorEditing!.speciality.toString();
+        _ratingController.text = widget.doctorEditing!.rating != null
+            ? (widget.doctorEditing!.rating).toString()
+            : '0';
+        avatarUrl = widget.doctorEditing!.avatarUrl ?? '';
+        _specialityController.text =
+            widget.doctorEditing!.speciality.toString();
       });
     }
 
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -119,18 +124,25 @@ class _DoctorFormState extends State<DoctorForm> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Column(children: <Widget>[
-            if (widget.doctorEditing != null) Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Editar informações',
-                  style: TextStyle(
-                      fontSize: 26,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
-                ),
-                ElevatedButton(onPressed: _submitForm, child: Icon(Icons.save))
-              ],
+            if (widget.doctorEditing != null)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Editar informações',
+                    style: TextStyle(
+                        fontSize: 26,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  ElevatedButton(
+                      onPressed: _submitForm, child: Icon(Icons.save))
+                ],
+              ),
+            SizedBox(height: 20),
+            ImageInput((String url){ 
+                avatarUrl = url;
+              }
             ),
             SizedBox(height: 20),
             TextField(
@@ -179,12 +191,10 @@ class _DoctorFormState extends State<DoctorForm> {
                       width: 2.0),
                 ),
               ),
-              // keyboardType: TextInputType.number,
-              // inputFormatters: <TextInputFormatter>[
-              //   FilteringTextInputFormatter.digitsOnly,
-              // ], // Only numbers can be entered
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             TextField(
               onChanged: (value) => {setInputError(value, 0)},
               controller: _addressController,
@@ -199,23 +209,14 @@ class _DoctorFormState extends State<DoctorForm> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
-            TextField(
-              onChanged: (value) => {setInputError(value, 4)},
-              controller: _avatarUrlController,
-              decoration: InputDecoration(
-                labelText: 'Avatar url',
-                helperText: errors[4] ? '*Campo obrigatório' : null,
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: errors[4] ? Colors.red : Colors.green.shade200,
-                      width: 2.0),
-                ),
-              ),
+            SizedBox(
+              height: 20,
             ),
-            SizedBox(height: 20,),
-            if (widget.doctorEditing == null) ElevatedButton(onPressed: _submitForm, child: Text('Cadastrar'))
+            SizedBox(
+              height: 20,
+            ),
+            if (widget.doctorEditing == null)
+              ElevatedButton(onPressed: _submitForm, child: Text('Cadastrar'))
           ]),
         ),
       ),

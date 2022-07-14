@@ -19,8 +19,8 @@ class ProfileDoctor extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                      width: 100.0,
-                      height: 100.0,
+                      width: 400.0,
+                      height: 400.0,
                       decoration: new BoxDecoration(
                           shape: BoxShape.circle,
                           image: new DecorationImage(
@@ -32,7 +32,7 @@ class ProfileDoctor extends StatelessWidget {
                       children: [
                         Text('${doctor.name}', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),),
                         Text('${doctor.speciality}'),
-                        Text('${doctor.address}'),
+                        Text('${doctor.placeLocation!.address}'),
                       ],
                     ),
                   ),

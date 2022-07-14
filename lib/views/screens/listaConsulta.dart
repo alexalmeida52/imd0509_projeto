@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../models/consultas.dart';
 import '../../utils/app_routes.dart';
-import '../../utils/mock/consultaList.dart';
 
 class ConsultaMedica extends StatefulWidget {
   @override

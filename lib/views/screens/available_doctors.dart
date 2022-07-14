@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../../models/doctor.dart';
 import '../../utils/app_routes.dart';
-import '../../utils/mock/doctorsList.dart';
 
 class AvailableDoctors extends StatefulWidget {
   @override

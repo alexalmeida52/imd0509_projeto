@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
-import 'package:imd0509_projeto/utils/mock/doctorsList.dart';
 import 'package:imd0509_projeto/views/components/doctor_form.dart';
 import 'package:provider/provider.dart';
 
@@ -56,50 +55,52 @@ class _AvailableDoctorsListState extends State<AvailableDoctorsList> {
                                               image: NetworkImage(doctor
                                                       .avatarUrl ??
                                                   'https://cdn-icons-png.flaticon.com/512/219/219986.png')))),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('${doctor.name} ${doctor.last_name}',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Color.fromRGBO(
-                                                  28, 45, 62, 1))),
-                                      Text(doctor.speciality,
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  28, 45, 62, 1))),
-                                      Text(doctor.address,
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(
-                                                  28, 45, 62, 1))),
-                                      Row(
-                                        children: [
-                                          ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pushNamed(
-                                                    '/profile_doctor',
-                                                    arguments: doctor);
-                                                //_selectedDoctor(doctor);
-                                              },
-                                              child: Text('Perfil')),
-                                          Container(
-                                            padding:
-                                                const EdgeInsets.only(left: 5),
-                                            width: 100,
-                                            child: ElevatedButton(
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('${doctor.name} ${doctor.last_name}',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Color.fromRGBO(
+                                                    28, 45, 62, 1))),
+                                        Text(doctor.speciality,
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    28, 45, 62, 1))),
+                                        Text(doctor.placeLocation!.address,
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(
+                                                    28, 45, 62, 1))),
+                                        Row(
+                                          children: [
+                                            ElevatedButton(
                                                 onPressed: () {
-                                                  Navigator.of(context)
-                                                      .pushNamed(
-                                                          '/create_schecule',
-                                                          arguments: doctor);
+                                                  Navigator.of(context).pushNamed(
+                                                      '/profile_doctor',
+                                                      arguments: doctor);
+                                                  //_selectedDoctor(doctor);
                                                 },
-                                                child:
-                                                    Text('Agendar consulta')),
-                                          ),
-                                        ],
-                                      )
-                                    ],
+                                                child: Text('Perfil')),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.only(left: 5),
+                                              width: 100,
+                                              child: ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pushNamed(
+                                                            '/create_schecule',
+                                                            arguments: doctor);
+                                                  },
+                                                  child:
+                                                      Text('Agendar consulta')),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   if (!widget.isManagement!)
                                     Icon(

@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:imd0509_projeto/controllers/doctor_controller.dart';
 import 'package:imd0509_projeto/models/doctor.dart';
+import 'package:imd0509_projeto/models/place.dart';
 import 'package:imd0509_projeto/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:imd0509_projeto/views/components/image_input.component.dart';
+import 'package:imd0509_projeto/views/components/location_input.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart' as path;
@@ -22,10 +24,11 @@ class DoctorForm extends StatefulWidget {
 }
 
 class _DoctorFormState extends State<DoctorForm> {
+  PlaceLocation placeLocation = new PlaceLocation(latitude: '0', longitude: '0');
+
   final _nameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _specialityController = TextEditingController();
-  final _addressController = TextEditingController();
   final _ratingController = TextEditingController();
   List<bool> errors = [false, false, false, false, false];
   String? avatarUrl;
@@ -34,7 +37,6 @@ class _DoctorFormState extends State<DoctorForm> {
     final name = _nameController.text;
     final lastName = _lastNameController.text;
     final speciality = _specialityController.text;
-    final address = _addressController.text;
     final rating = _ratingController.text;
 
     setState(() {
@@ -57,21 +59,22 @@ class _DoctorFormState extends State<DoctorForm> {
     Doctor doctor;
     if (widget.doctorEditing != null) {
       doctor = new Doctor(
-          name: name,
-          last_name: lastName,
-          speciality: speciality,
-          address: address,
-          id: widget.doctorEditing!.id,
-          avatarUrl: avatarUrl,
-          rating: widget.doctorEditing!.rating);
+        name: name,
+        last_name: lastName,
+        speciality: speciality,
+        id: widget.doctorEditing!.id,
+        avatarUrl: avatarUrl,
+        rating: widget.doctorEditing!.rating,
+        placeLocation: placeLocation
+      );
     } else {
       doctor = new Doctor(
         name: name,
         last_name: lastName,
         speciality: speciality,
-        address: address,
         avatarUrl: avatarUrl,
         // rating: int.parse(rating)
+        placeLocation: placeLocation
       );
     }
 
@@ -101,7 +104,8 @@ class _DoctorFormState extends State<DoctorForm> {
       setState(() {
         _nameController.text = widget.doctorEditing!.name;
         _lastNameController.text = widget.doctorEditing!.last_name;
-        _addressController.text = widget.doctorEditing!.address;
+        // TODO
+        // _addressController.text = widget.doctorEditing!.address;
         _ratingController.text = widget.doctorEditing!.rating != null
             ? (widget.doctorEditing!.rating).toString()
             : '0';
@@ -112,6 +116,10 @@ class _DoctorFormState extends State<DoctorForm> {
     }
     print('url $avatarUrl');
     super.initState();
+  }
+
+  void setPlaceLocation(PlaceLocation local) {
+    placeLocation = local;
   }
 
   @override
@@ -194,20 +202,7 @@ class _DoctorFormState extends State<DoctorForm> {
             SizedBox(
               height: 20,
             ),
-            TextField(
-              onChanged: (value) => {setInputError(value, 0)},
-              controller: _addressController,
-              decoration: InputDecoration(
-                labelText: 'Endereço',
-                helperText: errors[3] ? '*Campo obrigatório' : null,
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: errors[3] ? Colors.red : Colors.green.shade200,
-                      width: 2.0),
-                ),
-              ),
-            ),
+            LocationInput(setPlaceLocation),
             SizedBox(
               height: 20,
             ),

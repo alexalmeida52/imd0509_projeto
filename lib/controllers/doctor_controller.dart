@@ -19,7 +19,10 @@ class DoctorController extends ChangeNotifier {
     }
 
     final lista = jsonDecode(response.body).cast<Map<String, dynamic>>();
+    print(lista);
     _doctorsList = lista.map<Doctor>((item) => Doctor.fromJson(item)).toList();
+    print('map realizada');
+
     notifyListeners();
     return _doctorsList;
   }
@@ -64,11 +67,13 @@ class DoctorController extends ChangeNotifier {
           "name": doctor.name,
           "last_name": doctor.last_name,
           "avatar": doctor.avatarUrl,
-          "speciality": doctor.speciality
+          "speciality": doctor.speciality,
+          "lat": doctor.placeLocation!.latitude,
+          "long": doctor.placeLocation!.longitude,
+          "address": doctor.placeLocation!.address,
         }));
 
     if (response.statusCode == 204) {
-
       int index = _doctorsList.indexWhere((p) => p.id == doctor.id);
 
       if (index >= 0) {
@@ -80,22 +85,24 @@ class DoctorController extends ChangeNotifier {
   }
 
   Future<void> createDoctor(Doctor doctor) async {
-    
-    final response = await http.post(
-        Uri.parse('${Api.baseUrl}${Api.doctorsPath}'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode({
-          "name": doctor.name,
-          "last_name": doctor.last_name,
-          "avatar": doctor.avatarUrl,
-          "speciality": doctor.speciality,
-          "gender": "M",
-          "birthday": "1996-10-10",
-          "clinic": "MyHealth",
-          "price": 300.0
-        }));
+    final response =
+        await http.post(Uri.parse('${Api.baseUrl}${Api.doctorsPath}'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode({
+              "name": doctor.name,
+              "last_name": doctor.last_name,
+              "avatar": doctor.avatarUrl,
+              "speciality": doctor.speciality,
+              "gender": "M",
+              "birthday": "1996-10-10",
+              "clinic": "MyHealth",
+              "price": 300.0,
+              "lat": doctor.placeLocation!.latitude,
+              "long": doctor.placeLocation!.longitude,
+              "address": doctor.placeLocation!.address,
+            }));
 
     if (response.statusCode == 200) {
       print('_id: ${jsonDecode(response.body)['_id']}');

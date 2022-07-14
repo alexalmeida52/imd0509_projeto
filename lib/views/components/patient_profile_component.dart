@@ -157,6 +157,30 @@ class _PatientProfileComponentState extends State<PatientProfileComponent> {
                             child: InfoPatientProfile(
                                 '${controller.patient!.phone}', Icons.phone),
                           ),
+                          SizedBox(height: 8,),
+                          ElevatedButton(
+                            onPressed: () {
+                              Map<String, dynamic> arg = {
+                                "label1": "Endereço",
+                                "field1": "placeLocation",
+                                "title": "Seu endereço",
+                                "value1": controller.patient!.placeLocation,
+                                "isString": true,
+                                "patientId": controller.patient!.id
+                              };
+                              Navigator.pushNamed(
+                                  context, AppRoutes.EDIT_PATIENT_FIELD,
+                                  arguments: arg);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.green[200],
+                              padding: EdgeInsets.all(0),
+                            ),
+                            child: InfoPatientProfile(
+                              '${controller.patient!.placeLocation != null ? controller.patient!.placeLocation!.address : 'Não informado'}', 
+                              Icons.place
+                            ),
+                          ),
                         ],
                       );
                     })),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:imd0509_projeto/controllers/api.dart';
+import 'package:imd0509_projeto/models/place.dart';
 
 import '../models/patient.dart';
 import 'package:http/http.dart' as http;
@@ -53,6 +54,15 @@ class PatientController extends ChangeNotifier {
         break;
       case 'phone':
         patient!.phone = value;
+        break;
+      case 'lat':
+        patient!.placeLocation = PlaceLocation(latitude: value, longitude: patient!.placeLocation!.longitude, address: patient!.placeLocation!.address);
+        break;
+      case 'long':
+        patient!.placeLocation = PlaceLocation(latitude: patient!.placeLocation!.latitude, longitude: value, address: patient!.placeLocation!.address);
+        break;
+      case 'address':
+        patient!.placeLocation = PlaceLocation(latitude: patient!.placeLocation!.latitude, longitude: patient!.placeLocation!.longitude, address: value);
         break;
       default:
     }

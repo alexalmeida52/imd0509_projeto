@@ -3,6 +3,7 @@ import 'package:imd0509_projeto/views/components/update_birthday_component.dart'
 import 'package:imd0509_projeto/views/components/update_email_component.dart';
 import 'package:imd0509_projeto/views/components/update_name_last_name_component.dart';
 import 'package:imd0509_projeto/views/components/update_phone_component.dart';
+import 'package:imd0509_projeto/views/components/update_place_location_component.dart';
 
 class EditFieldPage extends StatelessWidget {
   @override
@@ -24,6 +25,8 @@ class EditFieldPage extends StatelessWidget {
         return UpdateEmailComponent(arg);
       case 'phone':
         return UpdatePhoneComponent(arg);
+      case 'placeLocation':
+        return UpdatePlaceLocationComponent(arg);
       default:
         return UpdateNameLastNameComponent(arg);
     }

@@ -17,21 +17,14 @@ class PatientController extends ChangeNotifier {
   }
 
   Future<void> fetchPatient() async {
-    print('buscando paciente');
     final response = await http.get(Uri.parse(
         '${Api.baseUrl}${Api.patientsPath}/612c033506ca88075f225bb6'));
-    print('response');
     final patientResponse = jsonDecode(response.body).cast<String, dynamic>();
-    print('decode');
     patient = Patient.fromJson(patientResponse);
-    print('Consulta finalizada');
     notifyListeners();
   }
 
   Future<void> updateField(String patientId, String field, String value) async {
-    print(patientId);
-    print(field);
-    print(value);
     final response = await http.put(
         Uri.parse('${Api.baseUrl}${Api.patientsPath}/$patientId'),
         headers: <String, String>{

@@ -19,9 +19,7 @@ class DoctorController extends ChangeNotifier {
     }
 
     final lista = jsonDecode(response.body).cast<Map<String, dynamic>>();
-    print(lista);
     _doctorsList = lista.map<Doctor>((item) => Doctor.fromJson(item)).toList();
-    print('map realizada');
 
     notifyListeners();
     return _doctorsList;

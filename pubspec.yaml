@@ -44,6 +44,11 @@ dependencies:
   path: ^1.8.0
   location: ^4.4.0
   google_maps_flutter: ^2.1.8
+  firebase_storage: ^10.2.18
+  firebase_messaging: ^11.4.4
+  timezone: ^0.8.0
+  flutter_native_timezone: ^2.0.0
+  flutter_local_notifications: ^9.4.0
 
 dev_dependencies:
   flutter_test:
